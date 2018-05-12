@@ -5,6 +5,8 @@
 [![npm version](https://badge.fury.io/js/frothy.svg)](https://badge.fury.io/js/frothy)
 [![Open Source Love](https://badges.frapsoft.com/os/mit/mit.svg?v=102)](https://github.com/ellerbrock/open-source-badge/)
 
+![Screenshot](screenshot.png)
+
 ### [Interactive Demo](https://frothy-123.firebaseapp.com/)
 
 #### Frothy supports the following Firebase authentication features:
@@ -237,7 +239,5 @@ Here is how to get started on your own development server.
 * `npm run dev`
 * visit `localhost:8000` in your browser
 * `npm run docs:prod` runs a production build
-
-![Screenshot](screenshot.png)
 
 Made with :green_heart: by a vegan
