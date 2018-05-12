@@ -1,26 +1,29 @@
-/**
- * @class ExampleComponent
- */
+import Frothy from './components/Frothy';
 
-import React, { Component } from 'react'
-import PropTypes from 'prop-types'
+export default Frothy;
 
-import styles from './styles.css'
+// danger-color
+// #ff4444
+// danger-color-dark
+// #CC0000
+// warning-color
+// #ffbb33
+// warning-color-dark
+// #FF8800
+// success-color
+// #00C851
+// success-color-dark
+// #007E33
+// info-color
+// #33b5e5
+// info-color-dark
+// #0099CC
 
-export default class ExampleComponent extends Component {
-  static propTypes = {
-    text: PropTypes.string
-  }
+// light gray
+// #9E9E9E
+//dark gray
+// #616161
+// #212121
 
-  render() {
-    const {
-      text
-    } = this.props
-
-    return (
-      <div className={styles.test}>
-        Example Component: {text}
-      </div>
-    )
-  }
-}
+// almost white
+// #efefef;

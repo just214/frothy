@@ -1,10 +1,14 @@
 {
   "name": "frothy",
-  "version": "1.0.0",
+  "version": "0.0.6",
   "description": "A customizable, drop-in login form for Firebase and React.",
   "author": "gojutin",
   "license": "MIT",
   "repository": "gojutin/frothy",
+  "bugs": {
+    "url": "https://github.com/gojutin/frothy/issues"
+  },
+  "homepage": "https://github.com/gojutin/frothy#readme",
   "main": "dist/index.js",
   "module": "dist/index.es.js",
   "jsnext:main": "dist/index.es.js",
@@ -17,11 +21,18 @@
     "predeploy": "cd example && yarn install && yarn run build",
     "deploy": "gh-pages -d example/build"
   },
-  "dependencies": {},
+  "dependencies": {
+    "react-modal": "^3.4.4",
+    "react-tabs": "^2.2.2",
+    "react-transition-group": "^2.3.1",
+    "typeface-roboto": "^0.0.54"
+  },
   "peerDependencies": {
     "prop-types": "^15.5.4",
     "react": "^15.0.0 || ^16.0.0",
-    "react-dom": "^15.0.0 || ^16.0.0"
+    "react-dom": "^15.0.0 || ^16.0.0",
+    "styled-components": "^3.2.0",
+    "firebase": "^4.13.1"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",
@@ -51,7 +62,15 @@
     "rollup-plugin-postcss": "^1.1.0",
     "rollup-plugin-url": "^1.3.0"
   },
-  "files": [
-    "dist"
+  "files": ["dist"],
+  "keywords": [
+    "react",
+    "firebase",
+    "authentication",
+    "oauth",
+    "login",
+    "signin",
+    "signup",
+    "form"
   ]
 }

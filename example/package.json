@@ -5,11 +5,17 @@
   "private": true,
   "license": "MIT",
   "dependencies": {
+    "firebase": "^5.0.1",
+    "frothy": "link:..",
+    "material-ui": "^1.0.0-beta.47",
     "prop-types": "^15.6.1",
     "react": "^16.2.0",
+    "react-color": "^2.14.1",
     "react-dom": "^16.2.0",
-    "frothy": "link:..",
-    "react-scripts": "^1.1.1"
+    "react-router-dom": "^4.2.2",
+    "react-scripts": "^1.1.1",
+    "react-syntax-highlighter": "^7.0.4",
+    "styled-components": "^3.2.6"
   },
   "scripts": {
     "start": "react-scripts start",
