@@ -1,0 +1,39 @@
+[debug] [2018-05-12T13:01:19.294Z] ----------------------------------------------------------------------
+[debug] [2018-05-12T13:01:19.296Z] Command:       /Users/JW/.nvm/versions/node/v8.9.4/bin/node /Users/JW/.nvm/versions/node/v8.9.4/bin/firebase deploy
+[debug] [2018-05-12T13:01:19.297Z] CLI Version:   3.18.4
+[debug] [2018-05-12T13:01:19.297Z] Platform:      darwin
+[debug] [2018-05-12T13:01:19.297Z] Node Version:  v8.9.4
+[debug] [2018-05-12T13:01:19.297Z] Time:          Sat May 12 2018 09:01:19 GMT-0400 (EDT)
+[debug] [2018-05-12T13:01:19.298Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2018-05-12T13:01:19.308Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2018-05-12T13:01:19.308Z] > authorizing via signed-in user
+[debug] [2018-05-12T13:01:19.310Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/frothy-123  
+  
+ Sat May 12 2018 09:01:19 GMT-0400 (EDT)
+[debug] [2018-05-12T13:01:19.657Z] <<< HTTP RESPONSE 200
+[debug] [2018-05-12T13:01:19.658Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/database/frothy-123/tokens  
+  
+ Sat May 12 2018 09:01:19 GMT-0400 (EDT)
+[debug] [2018-05-12T13:01:20.044Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Deploying to 'frothy-123'...
+[info] 
+[info] i  deploying hosting
+[info] i  hosting: preparing build directory for upload...
+[debug] [2018-05-12T13:01:21.274Z] >>> HTTP REQUEST PUT https://deploy.firebase.com/v1/hosting/frothy-123/uploads/-LCJREcEs2KEGMic0ktP?fileCount=9&message=  
+  
+ Sat May 12 2018 09:01:21 GMT-0400 (EDT)
+[debug] [2018-05-12T13:01:24.461Z] <<< HTTP RESPONSE 200
+[debug] [2018-05-12T13:01:24.462Z] [hosting] .tgz uploaded successfully, waiting for extraction
+[info] ✔  hosting: 9 files uploaded successfully
+[debug] [2018-05-12T13:01:25.281Z] [hosting] deploy completed after 4975ms
+[debug] [2018-05-12T13:01:25.400Z] >>> HTTP REQUEST POST https://deploy.firebase.com/v1/projects/frothy-123/releases  
+ { hosting: 
+   { public: 'build',
+     ignore: [ 'firebase.json', '**/.*', '**/node_modules/**' ],
+     rewrites: [ [Object] ],
+     version: '-LCJREcEs2KEGMic0ktP',
+     prefix: '-LCJREcEs2KEGMic0ktP/',
+     manifest: [] } } 
+ Sat May 12 2018 09:01:25 GMT-0400 (EDT)

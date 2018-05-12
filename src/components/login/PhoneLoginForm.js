@@ -9,7 +9,7 @@ class PasswordResetForm extends Component {
     phoneNumberIsValid: false,
     code: '',
     codeIsValid: false,
-    countryCode: '',
+    countryCode: 'US',
     notARobot: false,
   };
 
@@ -112,13 +112,7 @@ class PasswordResetForm extends Component {
           </form>
         ) : (
           <form onSubmit={this.handleSubmit}>
-            <div
-              ref={ref => (this.recaptcha = ref)}
-              style={{
-                transform: 'scale(0.95)',
-                transformOrigin: 0,
-              }}
-            />
+            <div ref={ref => (this.recaptcha = ref)} />
             <div style={{ display: 'flex', alignItems: 'center' }}>
               <Select
                 value={this.state.countryCode}

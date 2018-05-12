@@ -31,8 +31,8 @@ const Input = styled.input`
   background-position: 8px 8px;
   text-indent: ${props => (props.icon ? '30px' : '0px')};
   width: 90%;
-  height: 30px;
-  line-height: 30px;
+  height: 35px;
+  line-height: 25px;
   font-size: 14px;
   border: 1px solid lightgray;
   border-radius: 3px;

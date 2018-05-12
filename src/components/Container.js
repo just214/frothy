@@ -10,9 +10,9 @@ import Transition from 'react-transition-group/Transition';
 import * as auth from '../firebase';
 
 const StyledContainer = styled.div`
-  width: 330px;
+  width: 340px;
   font-family: 'Roboto', sans-serif;
-  max-width: 98%;
+  max-width: 100%;
   height: auto;
   padding: 0;
   overflow: auto;

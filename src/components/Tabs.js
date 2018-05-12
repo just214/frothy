@@ -16,7 +16,7 @@ const TabBase = styled(Tab)`
 `;
 
 const TabContent = styled.div`
-  color: ${props => (props.isSelected ? props.themeColor : '#CCC')};
+  color: ${props => (props.isSelected ? props.themeColor : '#707070')};
   :hover {
     color: ${props => props.themeColor};
   }

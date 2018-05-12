@@ -10,8 +10,8 @@ const Container = styled.div`
 const StyledCheckbox = styled.input`
   cursor: pointer;
   margin: 10px;
-  zoom: 1.2;
-  transform: scale(1.2);
+  zoom: 1.1;
+  transform: scale(1.1);
 `;
 
 const Label = styled.label`

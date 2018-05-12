@@ -23,6 +23,8 @@
 
 Frothy is built with [React](https://reactjs.org/), the [Firebase SDK](https://firebase.google.com/docs/database/web/start) and [Styled-Components](https://www.styled-components.com/).
 
+The total package size is as follows: minified- 102.92 kb / gzipped-24.52 kb
+
 ## Getting Started
 
 Please Read: This is a new project and has not been thoroughly tested. At the moment, it is not recommended to use this library in production. If you'd like to help get it there, your contributions would be greatly appreciated!

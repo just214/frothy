@@ -9,9 +9,7 @@ import CheckboxList from './CheckboxList';
 import Button from 'material-ui/Button';
 import Icon from 'material-ui/Icon';
 import Radio from 'material-ui/Radio';
-
-import SyntaxHighlighter from 'react-syntax-highlighter';
-import { docco } from 'react-syntax-highlighter/styles/hljs';
+import CodeBox from './CodeBox';
 
 const withOptions = FrothyComponent =>
   class Options extends Component {
@@ -40,20 +38,6 @@ const withOptions = FrothyComponent =>
       titleBackgroundColor: '#eee',
       titleColor: '#424242',
       themeColor: '#2196F3',
-    };
-
-    getCodeString = () => {
-      const arr = [];
-      if (this.state.title !== 'Welcome to Frothy!') {
-        arr.push(`title: '${this.state.title}'`);
-      }
-      if (this.state.showLabels) {
-        arr.push(`showLabels: true`);
-      }
-      if (this.state.rounded) {
-        arr.push(`rounded: ${this.state.rounded} `);
-      }
-      return arr.join('\n');
     };
 
     toggleDrawer = () => {
@@ -110,8 +94,17 @@ const withOptions = FrothyComponent =>
                 PROPS
               </h3>
             </div>
+            <div style={{ textAlign: 'center' }}>
+              <p>Scroll down to see the code</p>
+            </div>
 
-            <div style={{ width: 300 + 'px', padding: 20 + 'px' }}>
+            <div
+              style={{
+                width: 300 + 'px',
+                padding: 20 + 'px',
+                paddingTop: '0px',
+              }}
+            >
               <h5>STYLE</h5>
               <ColorOptions
                 changeColor={this.changeColor}
@@ -176,6 +169,7 @@ const withOptions = FrothyComponent =>
                 aria-label="normal"
               />normal
             </div>
+            <CodeBox {...this.state} />
           </Drawer>
           <Container style={{ backgroundColor: this.state.pageColor }}>
             <div
@@ -209,14 +203,6 @@ const withOptions = FrothyComponent =>
             </div>
 
             <FrothyComponent {...this.state} />
-            <div style={{ textAlign: 'left', width: '50%' }}>
-              {/* <SyntaxHighlighter language="javascript" style={docco}>{`
-<Frothy
-  ${this.getCodeString()}
-/>
-           
-            `}</SyntaxHighlighter> */}
-            </div>
           </Container>
         </div>
       );
