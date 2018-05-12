@@ -1,7 +1,7 @@
 {
-  "name": "frothy-example",
+  "name": "frothy-demo",
   "homepage": "https://gojutin.github.io/frothy",
-  "version": "0.0.0",
+  "version": "0.0.7",
   "private": true,
   "license": "MIT",
   "dependencies": {
@@ -22,5 +22,6 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
-  }
+  },
+  "devDependencies": {}
 }

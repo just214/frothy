@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.0.7] - 2018-05-12
+
+### Changed
+
+* Fixed an issue where the modal background was showing up.
+
+### Added
+
+* Added favicon and icon image to demo and README.
+
 ## [0.0.6] - 2018-05-11
 
 ### Added
