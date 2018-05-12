@@ -188,7 +188,7 @@ Frothy.defaultProps = {
   modalButton: <ModalButton />,
 
   // General Styling
-  themeColor: #2196F3'',
+  themeColor: '#2196F3',
   showBorder: true,
   rounded: 1,
   shadow: 3,

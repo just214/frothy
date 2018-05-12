@@ -23,11 +23,11 @@ Frothy is built with [React](https://reactjs.org/), the [Firebase SDK](https://f
 
 ## Getting Started
 
-Disclaimer: This is a new project and has not been thoroughly tested. At the moment, it is not recommended to use this library in production. If you'd like to help get it there, your contributions would be greatly appreciated!
+Please Read: This is a new project and has not been thoroughly tested. At the moment, it is not recommended to use this library in production. If you'd like to help get it there, your contributions would be greatly appreciated!
 
 In order to use this component, you will need to have the `firebase` and `styled-components` npm packages installed.
 
-`npm i firebase styled-components` or `yarn add firebase styled-components`
+`npm i frothy firebase styled-components` or `yarn add frothy firebase styled-components`
 
 You will also need to have Firebase configured for your React project. This process is simple (and free). Here is a rough overview of the process:
 
@@ -35,7 +35,7 @@ In Firebase:
 
 * Create a (free) Firebase project at [https://firebase.google.com/](https://firebase.google.com/).
 
-- In the Firebase console, go to `Authentication > SIGN-IN METHOD` and enable all of the sign-in providers that you are interested in supporting. Firebase will walk you through the steps for each one.
+- In the Firebase console, go to `Authentication > SIGN-IN METHOD` and enable all of the sign-in providers that you are interested in supporting. Firebase will walk you through the necessary steps for each one.
 
 In your React project:
 
@@ -56,9 +56,7 @@ const prodConfig = {
 firebase.initializeApp(config);
 ```
 
-Once Firebase is wired up, just import Frothy and drop it anywhere you'd like.
-
-`npm i frothy` or `yarn add frothy`
+Once Firebase is wired up, just import Frothy component and drop it in somewhere.
 
 ```js
 // import it

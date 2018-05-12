@@ -1,12 +1,11 @@
 {
   "name": "frothy-demo",
-  "homepage": "https://gojutin.github.io/frothy",
   "version": "0.0.7",
   "private": true,
   "license": "MIT",
   "dependencies": {
     "firebase": "^5.0.1",
-    "frothy": "link:..",
+    "frothy": "^0.0.7",
     "material-ui": "^1.0.0-beta.47",
     "prop-types": "^15.6.1",
     "react": "^16.2.0",
