@@ -58,7 +58,7 @@ class PasswordResetForm extends Component {
         <Button
           type="submit"
           disabled={!this.state.emailIsValid}
-          loading={this.props.isLoading}
+          loading={this.props.loading}
           themeColor={this.props.themeColor}
         >
           Email my password reset link

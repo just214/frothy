@@ -180,7 +180,7 @@ class Container extends Component {
       .then(user => {
         this.setState({ loading: false });
       })
-      .catch(() => this.handleError(error));
+      .catch(error => this.handleError(error));
   };
 
   handleAnonymousLogin = () => {
@@ -191,7 +191,7 @@ class Container extends Component {
       .then(() => {
         this.setState({ loading: false });
       })
-      .catch(() => this.handleError(error));
+      .catch(error => this.handleError(error));
   };
 
   handleSocialLogin = provider => {
@@ -219,7 +219,7 @@ class Container extends Component {
           messageType: 'success',
         });
       })
-      .catch(() => this.handleError(error));
+      .catch(error => this.handleError(error));
   };
 
   handleRememberEmail = (email, remember) => {

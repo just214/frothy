@@ -1,6 +1,6 @@
 {
   "name": "frothy",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "A customizable, drop-in login form for Firebase and React.",
   "author": "gojutin",
   "license": "MIT",
@@ -18,8 +18,8 @@
     "build": "rollup -c",
     "start": "rollup -c -w",
     "prepare": "yarn run build",
-    "predeploy": "cd example && yarn install && yarn run build",
-    "deploy": "gh-pages -d example/build"
+    "predeploy": "cd docs && yarn install && yarn run build",
+    "deploy": "gh-pages -d docs/build"
   },
   "dependencies": {
     "react-modal": "^3.4.4",

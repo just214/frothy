@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.0.8] - 2018-05-12
+
+### Changed
+
+* Internal code refactors. No changes to the API...just cleaner code.
+* Fixed an issue where the error was not being passed though on multiple Firebase requests.
+
 ## [0.0.7] - 2018-05-12
 
 ### Changed

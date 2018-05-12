@@ -3,8 +3,8 @@ import LoginForm from './LoginForm';
 import { Collapse, Button } from '../common';
 import PasswordResetForm from './PasswordResetForm';
 import PhoneLoginForm from './PhoneLoginForm';
+import AnonymousLogin from './AnonymousLogin';
 import SocialLogin from './SocialLogin';
-import UserIcon from '../../icons/user.svg';
 
 class LoginTab extends Component {
   render() {
@@ -23,36 +23,12 @@ class LoginTab extends Component {
         ) : null}
 
         {this.props.anonymous ? (
-          <div
-            style={{
-              cursor: 'pointer',
-              marginTop: '5px',
-              marginBottom: '10px',
-              opacity: 0.8,
-            }}
-          >
-            <Button
-              type="submit"
-              themeColor={'#424242'}
-              onClick={this.props.handleAnonymousLogin}
-              loading={
-                this.props.loading && this.props.provider === 'anonymous'
-              }
-            >
-              <div
-                style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                }}
-              >
-                <img src={UserIcon} alt="Anonymous Login Button" />
-
-                <span>LOG IN ANONYMOUSLY</span>
-              </div>
-            </Button>
-          </div>
+          <AnonymousLogin
+            loading={this.props.loading && this.props.provider === 'anonymous'}
+            handleAnonymousLogin={this.props.handleAnonymousLogin}
+          />
         ) : null}
+
         {this.props.passwordReset ? (
           <Collapse
             title="Reset your password"
@@ -60,10 +36,12 @@ class LoginTab extends Component {
           >
             <div>
               <PasswordResetForm
-                isLoading={
+                loading={
                   this.props.loading && this.props.provider === 'password'
                 }
-                {...this.props}
+                themeColor={this.props.themeColor}
+                handlePasswordReset={this.props.handlePasswordReset}
+                savedEmail={this.props.savedEmail}
               />
             </div>
           </Collapse>
