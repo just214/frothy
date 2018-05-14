@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Input, Button } from '../common';
+import { Input, Button, Divider } from '../common';
 
 class PasswordResetForm extends Component {
   state = {
@@ -54,7 +54,8 @@ class PasswordResetForm extends Component {
           icon="email"
           placeholder="Email"
         />
-
+        <Divider />
+        <br />
         <Button
           type="submit"
           disabled={!this.state.emailIsValid}

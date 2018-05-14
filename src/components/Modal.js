@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Modal from 'react-modal';
 import Transition from 'react-transition-group/Transition';
 import styled, { keyframes } from 'styled-components';
+import CloseIcon from '../icons/close.svg';
 
 const fadeIn = keyframes`
   from {
@@ -29,6 +30,21 @@ const fadeOut = keyframes`
 
 const Fade = styled.div`
   animation: ${props => (props.out ? fadeOut : fadeIn)} 0.2s linear;
+`;
+
+const CloseIconWrapper = styled.div`
+  display: flex;
+  justify-content: flex-end;
+`;
+
+const StyledCloseIcon = styled.img`
+  cursor: pointer;
+  height: 20px;
+  width: 20px;
+
+  :hover {
+    opacity: 0.9;
+  }
 `;
 
 // Make sure to bind modal to your appElement (http://reactcommunity.org/react-modal/accessibility/)
@@ -83,7 +99,7 @@ class ModalComponent extends Component {
         left: '50%',
         right: 'auto',
         bottom: 'auto',
-        padding: '5px 5px 50px 5px',
+        padding: '60px',
         marginRight: '-50%',
         transform: 'translate(-50%, -50%)',
 
@@ -105,7 +121,13 @@ class ModalComponent extends Component {
             contentLabel="Frothy Login Modal"
             closeTimeoutMS={100}
           >
-            <Fade out={!this.state.modalIsOpen}>{this.props.children}</Fade>
+            <Fade out={!this.state.modalIsOpen}>
+              <CloseIconWrapper>
+                <StyledCloseIcon src={CloseIcon} onClick={this.closeModal} />
+              </CloseIconWrapper>
+
+              {this.props.children}
+            </Fade>
           </Modal>
         </div>
       </div>

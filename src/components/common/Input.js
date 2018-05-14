@@ -33,13 +33,15 @@ const Input = styled.input`
   width: ${props => props.width || '90%'};
   height: 35px;
   line-height: 25px;
-  font-size: 14px;
-  border: 1px solid lightgray;
-  border-radius: 3px;
+  font-size: 16px;
+  box-shadow: none;
+  border: none;
+  /* border: 1px solid lightgray;
+  border-radius: 3px; */
   outline: none;
   padding: 0px 10px;
   font-family: 'Roboto', sans-serif;
-  margin-bottom: 8px;
+  margin: 5px;
 `;
 
 export { Input };

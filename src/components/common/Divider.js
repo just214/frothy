@@ -5,6 +5,8 @@ const Divider = styled.hr`
   height: 1px;
   background: #ccc;
   background-image: linear-gradient(to right, #eee, #ccc, #eee);
+  margin: 0 auto;
+  width: 90%;
 `;
 
 export { Divider };

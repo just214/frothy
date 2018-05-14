@@ -3,8 +3,8 @@ import withOptions from './options/withOptions';
 import Frothy from 'frothy';
 import Button from 'material-ui/Button';
 
-import firebase from 'firebase';
-const { auth } = firebase;
+import firebase from 'firebase/app';
+import 'firebase/auth';
 
 const LoginScreen = props => {
   return (
@@ -22,8 +22,7 @@ const LoginScreen = props => {
       >
         view on github
       </Button>
-
-      <Frothy {...props} auth={auth} />
+      <Frothy {...props} auth={firebase.auth} />
     </div>
   );
 };

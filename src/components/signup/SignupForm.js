@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Input, Button, Checkbox } from '../common';
+import { Input, Button, Checkbox, Divider } from '../common';
 
 class LoginForm extends Component {
   state = {
@@ -100,6 +100,7 @@ class LoginForm extends Component {
             icon="email"
             placeholder="Email"
           />
+          <Divider />
           <Input
             type="password"
             value={this.state.password}
@@ -108,6 +109,7 @@ class LoginForm extends Component {
             icon="password"
             placeholder="Password"
           />
+          <Divider />
           <Input
             type="password"
             value={this.state.confirmPassword}
@@ -131,7 +133,7 @@ class LoginForm extends Component {
             loading={this.props.loading}
             themeColor={this.props.themeColor}
           >
-            SIGN UP!
+            SIGN UP
           </Button>
         </form>
       </div>

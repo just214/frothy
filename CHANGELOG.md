@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.1.1] - 2018-05-14
+
+### Added
+
+* Added a close button "X" in the upper right hand corner to ensure simplicity of closing the modal.
+* Added new screenshot to README depicting new design.
+* Added inline sourcemaps to the production build for tools like package-size.
+
+### Changed
+
+* Updated the styling of the input elements from boxes to a cleaner, open look.
+* Updated CSS min-height property on container to prevent jumping in size dramatically between the login to signup tabs.
+
 ## [0.1.0] - 2018-05-14
 
 ### Added

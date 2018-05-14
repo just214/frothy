@@ -2,9 +2,9 @@ import React from 'react';
 import Button from 'material-ui/Button';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import firebase from '@firebase/app';
+import firebase from 'firebase/app';
 
-const { auth } = firebase;
+import 'firebase/auth';
 
 const Container = styled.div`
   padding: 50px 15% 0px 15%;
@@ -15,7 +15,7 @@ const Container = styled.div`
 `;
 
 const HomeScreen = props => {
-  const logout = () => auth().signOut();
+  const logout = () => firebase.auth().signOut();
   return (
     <Container>
       <Button variant="raised" color="secondary" onClick={logout}>

@@ -5,7 +5,7 @@ import './index.css';
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 
-import firebase from 'firebase';
+import firebase from 'firebase/app';
 
 const config = {
   apiKey: 'AIzaSyDxT66pMFKoylsGQDkSPP4sz1japsuEUcY',

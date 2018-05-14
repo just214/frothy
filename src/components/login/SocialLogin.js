@@ -4,7 +4,6 @@ import GoogleIcon from '../../icons/google.svg';
 import FacebookIcon from '../../icons/facebook.svg';
 import TwitterIcon from '../../icons/twitter.svg';
 import GithubIcon from '../../icons/github.svg';
-import { Divider } from '../common';
 import styled from 'styled-components';
 
 const StyledButton = styled.div`
@@ -57,8 +56,7 @@ const SocialLogin = props => {
 
   return (
     <div style={{ marginTop: '15px' }}>
-      <Divider />
-      <small>Log In With:</small>
+      <small style={{ color: '#424242' }}>Log In With:</small>
 
       <SocialContainer>
         {getProviders().map(provider => (

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Input, Button, Checkbox } from '../common';
+import { Input, Button, Checkbox, Divider } from '../common';
 
 class LoginForm extends Component {
   state = {
@@ -72,6 +72,7 @@ class LoginForm extends Component {
           icon="email"
           placeholder="Email"
         />
+        <Divider />
         <Input
           type="password"
           value={this.state.password}

@@ -4,9 +4,10 @@ const Select = styled.select`
   width: ${props => props.width || '90%'};
   height: 37px;
   line-height: 18px;
-  font-size: 14px;
-  border: 1px solid lightgray;
-  border-radius: 1px;
+  font-size: 16px;
+  border: none;
+  /* border: 1px solid lightgray;
+  border-radius: 1px; */
   outline: none;
   padding: 0px 10px;
   font-family: 'Roboto', sans-serif;

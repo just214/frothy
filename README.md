@@ -23,13 +23,15 @@
 
 Frothy is built with [React](https://reactjs.org/), the [Firebase SDK](https://firebase.google.com/docs/database/web/start) and [Styled-Components](https://www.styled-components.com/).
 
-The total package size is as follows: minified- 102.92 kb / gzipped-24.52 kb
+The total package size is as follows: minified- 103.96 KB / gzipped- 24.84 KB
 
 ## Getting Started
 
 Please Read: This is a new project and has not been thoroughly tested. At the moment, it is not recommended to use this library in production. If you'd like to help get it there, your contributions would be greatly appreciated!
 
-In order to use this component, you will need to have the `firebase` and `styled-components` npm packages installed.
+Currently, this library is not compatible with React Native due to DOM dependencies. This may change in the future.
+
+In order to use this component, you will need to install it with npm along with the `firebase` and `styled-components` npm packages.
 
 `npm i frothy firebase styled-components` or `yarn add frothy firebase styled-components`
 
@@ -85,9 +87,9 @@ However, it is possible to manually pass in the Firebase auth method,
 
 ```js
 import 'firebase' from 'firebase/app';
-const auth = firebase.auth;
+import 'firebase/auth';
 
-<Frothy auth={auth} />
+<Frothy auth={firebase.auth} />
 ```
 
 ## Accessing User and Authentication State
@@ -263,9 +265,11 @@ After initially writing all of the styles with inline JavaScript, it was decided
 ## What's Next?
 
 * Tests
+* Support for custom password requirements
 * Token management?
 * Recaptcha support for signup form
 * Custom error config
+* React Native support
 
 ## Contributing
 

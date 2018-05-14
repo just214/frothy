@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import { Input, Button, Select, Option } from '../common';
+import { Input, Button, Select, Option, Divider } from '../common';
 import countrycodes from '../../utils/countrycodes';
-import firebase from 'firebase';
 
 class PasswordResetForm extends Component {
   state = {
@@ -13,7 +12,7 @@ class PasswordResetForm extends Component {
   };
 
   componentDidMount() {
-    window.recaptchaVerifier = new firebase.auth.RecaptchaVerifier(
+    window.recaptchaVerifier = new this.props.auth.RecaptchaVerifier(
       this.recaptcha,
       {
         size: this.props.recaptcha === 'invisible' ? 'invisible' : 'normal',
@@ -89,6 +88,8 @@ class PasswordResetForm extends Component {
               isValid={this.state.codeIsValid}
               placeholder="Enter your code"
             />
+            <Divider />
+            <br />
             <Button
               type="submit"
               disabled={!this.state.codeIsValid}
@@ -124,6 +125,7 @@ class PasswordResetForm extends Component {
                   </Option>
                 ))}
               </Select>
+              <Divider />
 
               <Input
                 type="text"
@@ -134,6 +136,7 @@ class PasswordResetForm extends Component {
                 icon="phone"
                 placeholder="Phone Number"
               />
+              <Divider />
             </div>
             <div
               style={{

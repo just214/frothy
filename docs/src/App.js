@@ -2,13 +2,12 @@ import React, { Component } from 'react';
 import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
 
 // Firebase
-import firebase from 'firebase';
+import firebase from 'firebase/app';
+import 'firebase/auth';
 
 // Components
 import HomeScreen from './components/HomeScreen';
 import LoginScreen from './components/LoginScreen';
-
-const { auth } = firebase;
 
 class App extends Component {
   state = {
@@ -17,7 +16,7 @@ class App extends Component {
   };
 
   componentDidMount() {
-    this.authListener = auth().onAuthStateChanged(user => {
+    this.authListener = firebase.auth().onAuthStateChanged(user => {
       if (user) {
         this.setState({ loggedIn: true, user });
       } else {

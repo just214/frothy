@@ -103,7 +103,8 @@ const withOptions = FrothyComponent =>
 
             <div
               style={{
-                width: '300px',
+                width: '285px',
+
                 padding: '20px',
                 paddingTop: '0px',
               }}

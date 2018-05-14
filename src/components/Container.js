@@ -11,6 +11,7 @@ import Transition from 'react-transition-group/Transition';
 
 const StyledContainer = styled.div`
   width: 340px;
+  min-height: 510px;
   font-family: 'Roboto', sans-serif;
   max-width: 100%;
   height: auto;
