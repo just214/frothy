@@ -7,7 +7,7 @@ const StyledButton = styled.button`
   border: none;
   height: 35px;
   border-radius: 4px;
-  font-size: 12px;
+  font-size: 14px;
   line-height: 14px;
   padding: 5px;
   font-family: 'Roboto', sans-serif;

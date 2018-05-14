@@ -18,6 +18,7 @@ const withOptions = FrothyComponent =>
       drawer: false,
       title: 'Welcome to Frothy!',
       modal: false,
+      modalOverlay: true,
       rounded: 1,
       showBorder: true,
       shadow: 2,
@@ -25,10 +26,12 @@ const withOptions = FrothyComponent =>
       // AUTH
       emailLogin: true,
       emailSignup: true,
+      agree: false,
       emailRemember: true,
       passwordReset: true,
       phone: true,
       recaptcha: 'invisible',
+      recaptchaBadge: 'inline',
       anonymous: true,
       google: true,
       facebook: true,
@@ -100,8 +103,8 @@ const withOptions = FrothyComponent =>
 
             <div
               style={{
-                width: 300 + 'px',
-                padding: 20 + 'px',
+                width: '300px',
+                padding: '20px',
                 paddingTop: '0px',
               }}
             >
@@ -125,7 +128,7 @@ const withOptions = FrothyComponent =>
               <CheckboxList
                 {...this.state}
                 handleCheckbox={this.handleCheckbox}
-                items={['modal', 'showBorder', 'showLabels']}
+                items={['modal', 'modalOverlay', 'showBorder', 'showLabels']}
               />
               <h5>EMAIL/PASSWORD</h5>
               <CheckboxList
@@ -134,6 +137,7 @@ const withOptions = FrothyComponent =>
                 items={[
                   'emailLogin',
                   'emailSignup',
+                  'agree',
                   'emailRemember',
                   'passwordReset',
                 ]}
@@ -168,7 +172,25 @@ const withOptions = FrothyComponent =>
                 name="recaptcha"
                 aria-label="normal"
               />normal
+              <div>
+                <small>recaptchaBadge</small>
+              </div>
+              {['inline', 'bottomright', 'bottomleft'].map(p => (
+                <React.Fragment key={p}>
+                  <Radio
+                    key={p}
+                    checked={this.state.recaptchaBadge === p}
+                    onChange={() => this.setState({ recaptchaBadge: p })}
+                    value={p}
+                    name="recaptchaBadge"
+                    aria-label="normal"
+                    label={p}
+                  />
+                  {p}
+                </React.Fragment>
+              ))}
             </div>
+
             <CodeBox {...this.state} />
           </Drawer>
           <Container style={{ backgroundColor: this.state.pageColor }}>

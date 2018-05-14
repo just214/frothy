@@ -26,12 +26,12 @@ const CollapseContainer = styled.div`
 `;
 
 const CollapseContent = styled.div`
-  padding: 10px;
+  padding: 10px 0px;
 `;
 
 const transitionStyles = {
   entering: { maxHeight: 0 },
-  entered: { maxHeight: 200 },
+  entered: { maxHeight: 300 },
 };
 
 class Collapse extends Component {

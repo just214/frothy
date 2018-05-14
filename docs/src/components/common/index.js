@@ -2,9 +2,8 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
   text-align: center;
-  padding: 25px;
+  padding: 0px 25px;
   background-color: #eee;
-  height: 100%;
   min-height: 100vh;
 `;
 

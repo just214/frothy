@@ -1,7 +1,7 @@
 {
   "name": "frothy-demo",
-  "version": "0.0.8",
-  "private": true,
+  "version": "0.0.9",
+  "private": false,
   "license": "MIT",
   "dependencies": {
     "firebase": "^5.0.1",

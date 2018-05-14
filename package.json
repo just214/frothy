@@ -1,6 +1,6 @@
 {
   "name": "frothy",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "A customizable, drop-in login form for Firebase and React.",
   "author": "gojutin",
   "license": "MIT",
@@ -31,8 +31,7 @@
     "prop-types": "^15.5.4",
     "react": "^15.0.0 || ^16.0.0",
     "react-dom": "^15.0.0 || ^16.0.0",
-    "styled-components": "^3.2.0",
-    "firebase": "^4.13.1"
+    "styled-components": "^3.2.0"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",
@@ -54,6 +53,7 @@
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-scripts": "^1.1.1",
+    "react-test-renderer": "^16.3.2",
     "rollup": "^0.54.0",
     "rollup-plugin-babel": "^3.0.3",
     "rollup-plugin-commonjs": "^8.2.1",

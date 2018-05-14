@@ -1,96 +1,67 @@
 import React, { Component } from 'react';
 import Modal from 'react-modal';
 import Transition from 'react-transition-group/Transition';
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 
-const duration = 1000;
-
-const defaultStyle = {
-  transition: `opacity ${duration}ms ease-in-out`,
-  opacity: 0,
-};
-
-const transitionStyles = {
-  entering: { opacity: 0 },
-  entered: { opacity: 1 },
-};
-
-const customStyles = {
-  overlay: {
-    backgroundColor: 'rgba(0, 0, 0, 0.8)',
-  },
-  content: {
-    top: '50%',
-    left: '50%',
-    right: 'auto',
-    bottom: 'auto',
-    marginRight: '-50%',
-    transform: 'translate(-50%, -50%)',
-    padding: 0,
-    border: 'none',
-    borderRadius: 0,
-    backgroundColor: 'transparent',
-  },
-};
-
-// Make sure to bind modal to your appElement (http://reactcommunity.org/react-modal/accessibility/)
-Modal.setAppElement('#root');
-
-function ReactModalAdapter({
-  className,
-  overlayClassName,
-  modalClassName,
-  ...props
-}) {
-  return (
-    <ReactModal
-      className={modalClassName}
-      overlayClassName={overlayClassName}
-      portalClassName={className}
-      {...props}
-    />
-  );
-}
-
-const StyledModal = styled(ReactModalAdapter).attrs({
-  overlayClassName: 'Overlay',
-  modalClassName: 'Modal',
-})`
-  .Overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rebeccapurple;
+const fadeIn = keyframes`
+  from {
+    transform: scale(0);
+    opacity: 0;
   }
-  .Modal {
-    position: absolute;
-    top: 40px;
-    left: 40px;
-    right: 40px;
-    bottom: 40px;
-    background-color: papayawhip;
+
+  to {
+    transform: scale(1);
+    opacity: 1;
   }
 `;
+
+const fadeOut = keyframes`
+  from {
+    transform: scale(1);
+    opacity: 1;
+  }
+
+  to {
+    transform: scale(0);
+    opacity: 0;
+  }
+`;
+
+const Fade = styled.div`
+  animation: ${props => (props.out ? fadeOut : fadeIn)} 0.2s linear;
+`;
+
+// Make sure to bind modal to your appElement (http://reactcommunity.org/react-modal/accessibility/)
+if (typeof window !== 'undefined') {
+  Modal.setAppElement('body');
+} else {
+  Modal.setAppElement('#root');
+}
+
+const getBorderRadius = shadowProp => {
+  switch (shadowProp) {
+    case 1:
+      return '5px';
+    case 2:
+      return '10px';
+    case 3:
+      return '15px';
+    case 4:
+      return '20px';
+    case 5:
+      return '25px';
+    default:
+      return '0px';
+  }
+};
 
 class ModalComponent extends Component {
   state = {
     modalIsOpen: false,
-    modalAnimation: true,
   };
 
   openModal = () => {
-    this.setState({ modalIsOpen: true }, () => {
-      this.setState({
-        modalAnimation: true,
-      });
-    });
-  };
-
-  afterOpenModal = () => {
-    // references are now sync'd and can be accessed.
-    // this.subtitle.style.color = '#f00';
+    this.setState({ modalIsOpen: true });
   };
 
   closeModal = () => {
@@ -99,40 +70,44 @@ class ModalComponent extends Component {
 
   render() {
     const ModalButton = this.props.modalButton;
+    const customStyles = {
+      overlay: {
+        backgroundColor: this.props.modalOverlay
+          ? 'rgba(0, 0, 0, 0.8)'
+          : 'none',
+        position: 'absolute',
+        minHeight: '100vh',
+      },
+      content: {
+        top: '50%',
+        left: '50%',
+        right: 'auto',
+        bottom: 'auto',
+        padding: '50px',
+        marginRight: '-50%',
+        transform: 'translate(-50%, -50%)',
 
+        border: 'none',
+        borderRadius: getBorderRadius(this.props.rounded),
+        backgroundColor: 'transparent',
+        textAlign: 'center',
+      },
+    };
     return (
       <div>
         <div onClick={this.openModal}>{this.props.modalButton}</div>
 
-        <Transition in={this.state.modalAnimation} timeout={duration}>
-          {state => (
-            <div
-              style={{
-                ...defaultStyle,
-                ...transitionStyles[state],
-              }}
-            >
-              <Modal
-                isOpen={this.state.modalIsOpen}
-                onAfterOpen={this.afterOpenModal}
-                onRequestClose={this.closeModal}
-                style={customStyles}
-                contentLabel="Frothy Login Modal"
-                closeTimeoutMS={100}
-              >
-                {this.props.children}
-              </Modal>
-              {/* <StyledModal
-                isOpen={this.state.showModal}
-                contentLabel="onRequestClose Example"
-                onRequestClose={this.handleCloseModal}
-              >
-                <p>Modal text!</p>
-                <button onClick={this.handleCloseModal}>Close Modal</button>
-              </StyledModal> */}
-            </div>
-          )}
-        </Transition>
+        <div>
+          <Modal
+            isOpen={this.state.modalIsOpen}
+            onRequestClose={this.closeModal}
+            style={customStyles}
+            contentLabel="Frothy Login Modal"
+            closeTimeoutMS={100}
+          >
+            <Fade out={!this.state.modalIsOpen}>{this.props.children}</Fade>
+          </Modal>
+        </div>
       </div>
     );
   }

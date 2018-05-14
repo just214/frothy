@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 
 const Select = styled.select`
-  width: 60px;
-  height: 35px;
+  width: ${props => props.width || '90%'};
+  height: 37px;
   line-height: 18px;
   font-size: 14px;
   border: 1px solid lightgray;

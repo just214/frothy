@@ -30,7 +30,7 @@ const Input = styled.input`
   background-repeat: no-repeat;
   background-position: 8px 8px;
   text-indent: ${props => (props.icon ? '30px' : '0px')};
-  width: 90%;
+  width: ${props => props.width || '90%'};
   height: 35px;
   line-height: 25px;
   font-size: 14px;

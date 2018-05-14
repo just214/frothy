@@ -6,6 +6,7 @@ import { TabPanel } from 'react-tabs';
 import LoginTab from './login/LoginTab';
 import Message from './Message';
 import SignupForm from './signup/SignupForm';
+import withModal from './Modal';
 import Transition from 'react-transition-group/Transition';
 import * as auth from '../firebase';
 
@@ -21,7 +22,7 @@ const StyledContainer = styled.div`
   border-radius: ${props => getBorderRadius(props.rounded)}
   background-color: white;
   margin: 0 auto;
-  padding-bottom: 15px;
+  padding-bottom: 10px;
   box-shadow: ${props => getShadow(props.shadow)};
 `;
 
@@ -77,16 +78,18 @@ class Container extends Component {
   state = {
     messageText: null,
     messageType: null,
-    messageComplete: false,
+    messageLoaded: false,
     loading: false,
     provider: '',
     savedEmail: '',
     textSent: false,
     confirmationResult: null,
+    userLocation: null,
   };
 
   componentWillMount() {
-    const savedEmail = localStorage.getItem('frothyEmailAddress');
+    if (!window.localStorage) return;
+    const savedEmail = window.localStorage.getItem('frothyEmailAddress');
     this.setState({ savedEmail });
   }
 
@@ -128,9 +131,6 @@ class Container extends Component {
       })
       .catch(error => {
         this.handleError(error);
-        window.recaptchaVerifierSignup.render().then(function(widgetId) {
-          grecaptcha.reset(widgetId);
-        });
       });
   };
 
@@ -154,6 +154,7 @@ class Container extends Component {
     return auth
       .signInWithPhoneNumber(phoneNumber, appVerifier)
       .then(confirmationResult => {
+        console.log(confirmationResult);
         this.setState({
           loading: false,
           textSent: true,
@@ -223,11 +224,11 @@ class Container extends Component {
   };
 
   handleRememberEmail = (email, remember) => {
-    if (!this.props.emailRemember) return;
+    if (!this.props.emailRemember || !window.localStorage) return;
     if (remember) {
-      localStorage.setItem('frothyEmailAddress', email);
+      window.localStorage.setItem('frothyEmailAddress', email);
     } else if (!remember) {
-      localStorage.removeItem('frothyEmailAddress');
+      window.localStorage.removeItem('frothyEmailAddress');
     }
   };
 
@@ -239,17 +240,17 @@ class Container extends Component {
   };
 
   updateMessage = ({ messageText, messageType }) => {
-    // The messageComplete state is due to the transistion not working when the component is conditionally
+    // The messageLoaded state is due to the transistion not working when the component is conditionally
     // rendered with the same prop that is transitioning it.
     this.setState(
       {
         messageText,
         messageType,
-        messageComplete: false,
+        messageLoaded: false,
       },
       () => {
         this.setState({
-          messageComplete: true,
+          messageLoaded: true,
         });
       },
     );
@@ -275,7 +276,7 @@ class Container extends Component {
       >
         {this.state.messageText ? (
           <div style={{ backgroundColor: this.props.titleBackgroundColor }}>
-            <Transition in={this.state.messageComplete} timeout={duration}>
+            <Transition in={this.state.messageLoaded} timeout={duration}>
               {state => (
                 <Message
                   styles={{
@@ -285,7 +286,6 @@ class Container extends Component {
                   dismiss={this.dismissMessage}
                   messageType={this.state.messageType}
                   titleBackgroundColor={this.props.titleBackgroundColor}
-                  rounded={this.props.rounded}
                 >
                   {this.state.messageText}
                 </Message>
@@ -297,7 +297,6 @@ class Container extends Component {
             titleColor={this.props.titleColor}
             title={this.props.title}
             titleBackgroundColor={this.props.titleBackgroundColor}
-            rounded={this.props.rounded}
           />
         )}
 
@@ -308,13 +307,7 @@ class Container extends Component {
           loginEnabled={loginEnabled}
         >
           {loginEnabled ? (
-            <TabPanel
-              style={{
-                padding: '10px',
-                textAlign: 'center',
-                marginTop: '10px',
-              }}
-            >
+            <TabPanel>
               <LoginTab
                 {...this.props}
                 handleEmailLogin={this.handleEmailLogin}
@@ -339,21 +332,15 @@ class Container extends Component {
           ) : null}
 
           {this.props.emailSignup ? (
-            <TabPanel
-              // these styles are super sketchy. Not sure why this TabPanel is different from the one
-              // above when the styles are exactly the same. They both render an unstyled div?!?!
-              style={{
-                padding: '0px',
-                textAlign: 'center',
-                margin: '10px',
-              }}
-            >
+            <TabPanel>
               <SignupForm
                 loading={this.props.loading && this.props.provider === 'email'}
                 handleEmailSignup={this.handleEmailSignup}
                 savedEmail={this.state.savedEmail}
                 themeColor={this.props.themeColor}
                 recaptcha={this.props.recaptcha}
+                agree={this.props.agree}
+                agreeMessage={this.props.agreeMessage}
               />
             </TabPanel>
           ) : null}

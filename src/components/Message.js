@@ -6,21 +6,30 @@ import CloseIcon from '../icons/close.svg';
 const Container = styled.div`
   background-color: ${props => props.titleBackgroundColor};
   text-align: left;
-  color: ${props => getColor(props.messageType)};
+  color: ${props => getMessageTextColor(props.messageType)};
   padding: 10px;
-  border-radius: ${props => props.rounded};
 `;
 
 const MessageBox = styled.div`
   background-color: #212121;
   padding: 10px;
-  opacity: 0.9;
   display: flex;
   align-items: center;
   min-height: 40px;
 `;
 
-const getColor = type => {
+const MessageText = styled.small`
+  flex: 6;
+`;
+
+const MessageIcon = styled.small`
+  color: #eee;
+  cursor: pointer;
+  flex: 1;
+  text-align: center;
+`;
+
+const getMessageTextColor = type => {
   switch (type) {
     case 'error':
       return '#EF5350';
@@ -35,18 +44,10 @@ const Message = props => {
   return (
     <Container {...props}>
       <MessageBox>
-        <small style={{ flex: 6 }}>{props.children}</small>
-        <small
-          onClick={props.dismiss}
-          style={{
-            color: '#eee',
-            cursor: 'pointer',
-            flex: 1,
-            textAlign: 'center',
-          }}
-        >
+        <MessageText>{props.children}</MessageText>
+        <MessageIcon onClick={props.dismiss}>
           <img height="20px" src={CloseIcon} alt="close message icon" />
-        </small>
+        </MessageIcon>
       </MessageBox>
     </Container>
   );

@@ -20,14 +20,15 @@ const AnonymousLogin = props => {
   return (
     <Container>
       <Button
+        style={{ color: '#424242' }}
         type="submit"
-        themeColor={'#424242'}
+        themeColor={'#eee'}
         onClick={props.handleAnonymousLogin}
         loading={props.loading}
       >
         <ButtonContents>
           <img src={UserIcon} alt="Anonymous Login Button" />
-          <span>LOG IN ANONYMOUSLY</span>
+          <span>&nbsp;LOG IN ANONYMOUSLY</span>
         </ButtonContents>
       </Button>
     </Container>

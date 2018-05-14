@@ -12,7 +12,7 @@
 #### Frothy supports the following Firebase authentication features:
 
 * Login with Email/Password
-* Sign Up with Email/Password (with Recaptcha)
+* Sign Up with Email/Password
 * Google Login
 * Facebook Login
 * Twitter Login
@@ -123,6 +123,7 @@ import { Button } from './common';
   // Modal
   modal={false} // If true, the login form becomes a modal and provides a button to toggle
   modalButton={<Button>Sign In</Button>} // Accepts a component instance
+  modalOverlay={true} // Shows a background overlay when the modal is enabled and opened.
   // General Styling
   themeColor="#2196F3" // Sets the color of the tabs and buttons.
   showBorder={true} // Shows or hide the box border
@@ -137,9 +138,12 @@ import { Button } from './common';
   emailLogin={true} // Enable email login
   emailRemember={true} // Enable "Remember me" checkbox (localStorage)
   emailSignup={true} // Enable email signup
+  agree={false} // Include a checkbox for the user to agree to terms, privacy policy, etc..
+  agreeMessage="I agree to the terms of service." // Accepts a component instance or a string
   passwordReset={true} // Enable password reset
   phone={true} // Enable phone login
   recaptcha={'invisible'} // invisible or normal (phone login only)
+  recaptchaBadge="inline" // inline, bottomright or bottomleft
   anonymous={true} // Enable anonymous login
   google={true} // Enable Google login
   facebook={true} // Enable Facebook login
@@ -155,6 +159,7 @@ Frothy.propTypes = {
   // Modal
   modal: PropTypes.bool,
   modalButton: PropTypes.element,
+  modalOverlay: PropTypes.bool,
 
   // General Styling
   themeColor: PropTypes.string,
@@ -172,10 +177,13 @@ Frothy.propTypes = {
   emailLogin: PropTypes.bool,
   emailRemember: PropTypes.bool,
   emailSignup: PropTypes.bool,
+  agree: PropTypes.bool,
+  agreeMessage: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
   passwordReset: PropTypes.bool,
   anonymous: PropTypes.bool,
   phone: PropTypes.bool,
   recaptcha: PropTypes.oneOf(['normal', 'invisible']),
+  recaptchaBadge: PropTypes.oneOf(['inline', 'bottomright', 'bottomleft']),
   google: PropTypes.bool,
   facebook: PropTypes.bool,
   twitter: PropTypes.bool,
@@ -190,6 +198,7 @@ Frothy.defaultProps = {
   // Modal
   modal: false,
   modalButton: <ModalButton />,
+  modalOverlay: true,
 
   // General Styling
   themeColor: '#2196F3',
@@ -207,9 +216,12 @@ Frothy.defaultProps = {
   emailLogin: true,
   emailRemember: true,
   emailSignup: true,
+  agree: false,
+  agreeMessage: 'I agree to the terms of service.',
   passwordReset: true,
   phone: true,
   recaptcha: 'invisible',
+  recaptchaBadge: 'inline',
   anonymous: true,
   google: true,
   facebook: true,
@@ -222,7 +234,7 @@ Frothy.defaultProps = {
 
 This library aims to strike a nice balance of configuration options and simplicity.
 
-After initially writing all of the styles with inline JavaScript, it was decided to refactor the project to use Styled-Components. The Styled-Components package is not included as a dependency due to the conflicts associated with having two installations in the same project. Instead, it is a peer dependency that will need to be imported. Styled-Components includes vendor prefixing, which allows this package to be supported by more browsers. It also injects the styles directly into the document, which means that you do not need to requre any additional CSS files.
+After initially writing all of the styles with inline JavaScript, it was decided to refactor the project to use Styled-Components. The Styled-Components package is not included as a dependency due to the conflicts associated with having two installations in the same project. Instead, it is a required peer dependency that will need to be imported along with Firebase. Styled-Components includes vendor prefixing, which allows this package to be supported by more browsers. It also injects the styles directly into the document, which means that you do not need to require any additional CSS files.
 
 ## What's Next?
 

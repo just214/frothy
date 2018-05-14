@@ -21,10 +21,8 @@ const Label = styled.label`
 
 const Checkbox = props => (
   <Container>
-    <Label>
-      <StyledCheckbox type="checkbox" {...props} />
-      {props.label}
-    </Label>
+    <StyledCheckbox type="checkbox" {...props} />
+    <Label>{props.label}</Label>
   </Container>
 );
 

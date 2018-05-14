@@ -14,7 +14,7 @@ class LoginTab extends Component {
       this.props.twitter ||
       this.props.github;
     return (
-      <div>
+      <div style={{ paddingTop: '25px' }}>
         {this.props.emailLogin ? (
           <LoginForm
             isLoading={this.props.loading && this.props.provider === 'email'}
@@ -61,7 +61,8 @@ class LoginTab extends Component {
                 handleConfirmCode={this.props.handleConfirmCode}
                 textSent={this.props.textSent}
                 cancelTextSent={this.props.cancelTextSent}
-                {...this.props}
+                recaptcha={this.props.recaptcha}
+                recaptchaBadge={this.props.recaptchaBadge}
               />
             </div>
           </Collapse>

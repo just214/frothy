@@ -10,7 +10,6 @@ class PasswordResetForm extends Component {
     code: '',
     codeIsValid: false,
     countryCode: 'US',
-    notARobot: false,
   };
 
   componentDidMount() {
@@ -18,12 +17,7 @@ class PasswordResetForm extends Component {
       this.recaptcha,
       {
         size: this.props.recaptcha === 'invisible' ? 'invisible' : 'normal',
-        // size: 'normal',
-        callback: response => {
-          this.setState({
-            notARobot: true,
-          });
-        },
+        callback: response => {},
         'expired-callback': function() {
           window.recaptchaVerifier.render().then(function(widgetId) {
             grecaptcha.reset(widgetId);
@@ -42,7 +36,7 @@ class PasswordResetForm extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
-    if (!this.state.phoneNumberIsValid || !this.state.notARobot) return;
+    if (!this.state.phoneNumberIsValid) return;
     const { countryCode, phoneNumber } = this.state;
 
     this.props.handlePhoneLogin(
@@ -112,21 +106,28 @@ class PasswordResetForm extends Component {
           </form>
         ) : (
           <form onSubmit={this.handleSubmit}>
-            <div ref={ref => (this.recaptcha = ref)} />
-            <div style={{ display: 'flex', alignItems: 'center' }}>
+            <div
+              style={{
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                justifyContent: 'space-around',
+              }}
+            >
               <Select
                 value={this.state.countryCode}
                 onChange={this.onChangeCountryCode}
               >
                 {countrycodes.map(cc => (
                   <Option key={cc.name + cc.callingCode} value={cc.code}>
-                    {cc.code}
+                    {cc.name} +{cc.callingCode}
                   </Option>
                 ))}
               </Select>
 
               <Input
                 type="text"
+                width="85%"
                 value={this.state.phoneNumber}
                 onChange={this.onChangePhoneNumber}
                 isValid={this.state.phoneNumberIsValid}
@@ -134,9 +135,21 @@ class PasswordResetForm extends Component {
                 placeholder="Phone Number"
               />
             </div>
+            <div
+              style={{
+                display: 'flex',
+                justifyContent: 'center',
+                margin: '10px 0px',
+              }}
+            >
+              <div
+                ref={ref => (this.recaptcha = ref)}
+                data-badge={this.props.recaptchaBadge}
+              />
+            </div>
             <Button
               type="submit"
-              disabled={!this.state.phoneNumberIsValid || !this.state.notARobot}
+              disabled={!this.state.phoneNumberIsValid}
               loading={this.props.isLoading}
               themeColor={this.props.themeColor}
             >

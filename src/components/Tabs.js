@@ -7,16 +7,18 @@ import Transition from 'react-transition-group/Transition';
 
 const TabBase = styled(Tab)`
   list-style-type: none;
-  padding-bottom: 0px;
+  padding-bottom: 5px;
   cursor: pointer;
   outline: none;
   width: 30%;
   text-align: center;
   display: inline-block;
+  -webkit-tap-highlight-color: transparent;
 `;
 
 const TabContent = styled.div`
   color: ${props => (props.isSelected ? props.themeColor : '#707070')};
+  -webkit-tap-highlight-color: transparent;
   :hover {
     color: ${props => props.themeColor};
   }

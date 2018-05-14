@@ -11,7 +11,7 @@ class LoginForm extends Component {
     confirmPassword: '',
     confirmPasswordIsValid: false,
     rememberMe: true,
-    notARobot: false,
+    agreeToTerms: false,
   };
 
   componentDidMount() {
@@ -22,27 +22,6 @@ class LoginForm extends Component {
         emailIsValid: this.validateEmail(email),
       });
     }
-
-    window.recaptchaVerifierSignup = new firebase.auth.RecaptchaVerifier(
-      this.recaptcha,
-      {
-        size: this.props.recaptcha === 'invisible' ? 'invisible' : 'normal',
-        // size: 'normal',
-        callback: response => {
-          this.setState({
-            notARobot: true,
-          });
-        },
-        'expired-callback': function() {
-          window.recaptchaVerifierSignup.render().then(function(widgetId) {
-            grecaptcha.reset(widgetId);
-          });
-        },
-      },
-    );
-    window.recaptchaVerifierSignup.render().then(function(widgetId) {
-      window.recaptchaWidgetSignupId = widgetId;
-    });
   }
 
   validateEmail = email => {
@@ -84,24 +63,35 @@ class LoginForm extends Component {
     });
   };
 
-  isValid = () =>
-    this.state.emailIsValid &&
-    this.state.passwordIsValid &&
-    this.state.confirmPasswordIsValid;
+  onChangeAgreeToTerms = e => {
+    this.setState(prevState => ({
+      agreeToTerms: !prevState.agreeToTerms,
+    }));
+  };
+
+  isValid = () => {
+    const initialValidation =
+      this.state.emailIsValid &&
+      this.state.passwordIsValid &&
+      this.state.confirmPasswordIsValid;
+    if (this.props.agree) {
+      return initialValidation && this.state.agreeToTerms;
+    } else {
+      return initialValidation;
+    }
+  };
 
   handleSubmit = e => {
     e.preventDefault();
-
-    console.log(window.recaptchaVerifierSignup);
-    console.log(window.recaptchaWidgetSignupId);
     if (!this.isValid()) return;
+    if (this.props.agree && !this.state.agreeToTerms) return;
     const { email, password } = this.state;
     this.props.handleEmailSignup(email, password);
   };
 
   render() {
     return (
-      <div style={{ margin: 0, padding: 0 }}>
+      <div style={{ paddingTop: '25px' }}>
         <form onSubmit={this.handleSubmit}>
           <Input
             type="text"
@@ -128,15 +118,17 @@ class LoginForm extends Component {
             placeholder="Confirm your password"
           />
 
-          <div ref={ref => (this.recaptcha = ref)} />
+          {this.props.agree ? (
+            <Checkbox
+              label={this.props.agreeMessage}
+              checked={this.state.agreeToTerms}
+              onChange={this.onChangeAgreeToTerms}
+            />
+          ) : null}
 
           <Button
             style={{ marginTop: '10px' }}
-            disabled={
-              !this.state.emailIsValid ||
-              !this.state.passwordIsValid ||
-              !this.state.notARobot
-            }
+            disabled={!this.isValid()}
             loading={this.props.loading}
             themeColor={this.props.themeColor}
           >

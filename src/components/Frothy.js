@@ -8,7 +8,11 @@ import { Button } from './common';
 const Frothy = props => {
   if (props.modal) {
     return (
-      <Modal modalButton={props.modalButton}>
+      <Modal
+        modalButton={props.modalButton}
+        rounded={props.rounded}
+        modalOverlay={props.modalOverlay}
+      >
         <Container {...props} />
       </Modal>
     );
@@ -29,6 +33,7 @@ Frothy.propTypes = {
   // Modal
   modal: PropTypes.bool,
   modalButton: PropTypes.element,
+  modalOverlay: PropTypes.bool,
 
   // General Styling
   themeColor: PropTypes.string,
@@ -46,10 +51,13 @@ Frothy.propTypes = {
   emailLogin: PropTypes.bool,
   emailRemember: PropTypes.bool,
   emailSignup: PropTypes.bool,
+  agree: PropTypes.bool,
+  agreeMessage: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
   passwordReset: PropTypes.bool,
   anonymous: PropTypes.bool,
   phone: PropTypes.bool,
   recaptcha: PropTypes.oneOf(['normal', 'invisible']),
+  recaptchaBadge: PropTypes.oneOf(['inline', 'bottomright', 'bottomleft']),
   google: PropTypes.bool,
   facebook: PropTypes.bool,
   twitter: PropTypes.bool,
@@ -64,6 +72,7 @@ Frothy.defaultProps = {
   // Modal
   modal: false,
   modalButton: <ModalButton />,
+  modalOverlay: true,
 
   // General Styling
   themeColor: '#2196F3',
@@ -81,9 +90,12 @@ Frothy.defaultProps = {
   emailLogin: true,
   emailRemember: true,
   emailSignup: true,
+  agree: false,
+  agreeMessage: 'I agree to the terms of service.',
   passwordReset: true,
   phone: true,
   recaptcha: 'invisible',
+  recaptchaBadge: 'inline',
   anonymous: true,
   google: true,
   facebook: true,

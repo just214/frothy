@@ -1,7 +1,15 @@
-import ExampleComponent from './'
+// import ExampleComponent from './';
+import React from 'react';
+import renderer from 'react-test-renderer';
+import Frothy from './components/Frothy';
 
-describe('ExampleComponent', () => {
-  it('is truthy', () => {
-    expect(ExampleComponent).toBeTruthy()
-  })
-})
+it('renders correctly', () => {
+  const tree = renderer.create(<Frothy />).toJSON();
+  expect(tree).toMatchSnapshot();
+});
+
+// describe('ExampleComponent', () => {
+//   it('is truthy', () => {
+//     expect(ExampleComponent).toBeTruthy()
+//   })
+// })
