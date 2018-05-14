@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Input, Button, Select, Option } from '../common';
-import firebase from 'firebase';
 import countrycodes from '../../utils/countrycodes';
+import firebase from 'firebase';
 
 class PasswordResetForm extends Component {
   state = {

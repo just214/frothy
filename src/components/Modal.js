@@ -83,7 +83,7 @@ class ModalComponent extends Component {
         left: '50%',
         right: 'auto',
         bottom: 'auto',
-        padding: '50px',
+        padding: '5px 5px 50px 5px',
         marginRight: '-50%',
         transform: 'translate(-50%, -50%)',
 

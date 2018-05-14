@@ -8,7 +8,6 @@ import Message from './Message';
 import SignupForm from './signup/SignupForm';
 import withModal from './Modal';
 import Transition from 'react-transition-group/Transition';
-import * as auth from '../firebase';
 
 const StyledContainer = styled.div`
   width: 340px;
@@ -25,6 +24,17 @@ const StyledContainer = styled.div`
   padding-bottom: 10px;
   box-shadow: ${props => getShadow(props.shadow)};
 `;
+
+const firebaseError = error => {
+  switch (error.code) {
+    case 'auth/operation-not-allowed':
+      return 'This feature is not enabled at this time.';
+    case 'auth/account-exists-with-different-credential':
+      return 'This email address is registered under a different account.';
+    default:
+      return error.message;
+  }
+};
 
 const getShadow = shadowProp => {
   switch (shadowProp) {
@@ -110,7 +120,7 @@ class Container extends Component {
 
   handleError = error => {
     console.error(error);
-    const err = auth.firebaseError(error);
+    const err = firebaseError(error);
     this.updateMessage({
       messageText: err,
       messageType: 'error',
@@ -121,10 +131,28 @@ class Container extends Component {
     return error;
   };
 
+  auth = () => {
+    if (this.props.auth) {
+      return this.props.auth();
+    } else {
+      const firebase = require('firebase');
+      return firebase.auth();
+    }
+  };
+
+  authMethod = () => {
+    if (this.props.auth) {
+      return this.props.auth;
+    } else {
+      const firebase = require('firebase');
+      return auth;
+    }
+  };
+
   handleEmailSignup = (email, password) => {
     if (!this.props.emailSignup) return;
     this.handleStartAsync('email');
-    return auth
+    return this.auth()
       .createUserWithEmailAndPassword(email, password)
       .then(user => {
         this.setState({ loading: false });
@@ -137,7 +165,7 @@ class Container extends Component {
   handleEmailLogin = (email, password, remember) => {
     if (!this.props.emailLogin) return;
     this.handleStartAsync('email');
-    return auth
+    return this.auth()
       .signInWithEmailAndPassword(email, password)
       .then(user => {
         // Remember the email only if login is successful
@@ -151,7 +179,7 @@ class Container extends Component {
     if (!this.props.phone) return;
     this.handleStartAsync('phone');
     const appVerifier = window.recaptchaVerifier;
-    return auth
+    return this.auth()
       .signInWithPhoneNumber(phoneNumber, appVerifier)
       .then(confirmationResult => {
         console.log(confirmationResult);
@@ -187,7 +215,7 @@ class Container extends Component {
   handleAnonymousLogin = () => {
     if (!this.props.anonymous) return;
     this.handleStartAsync('anonymous');
-    return auth
+    return this.auth()
       .signInAnonymously()
       .then(() => {
         this.setState({ loading: false });
@@ -195,12 +223,33 @@ class Container extends Component {
       .catch(error => this.handleError(error));
   };
 
+  socialLogin = providerName => {
+    const auth = this.authMethod();
+    const getProvider = () => {
+      switch (providerName) {
+        case 'facebook':
+          return new auth.FacebookAuthProvider();
+        case 'google':
+          return new auth.GoogleAuthProvider();
+        case 'twitter':
+          return new auth.TwitterAuthProvider();
+        case 'github':
+          return new auth.GithubAuthProvider();
+        default:
+          break;
+      }
+    };
+
+    const provider = getProvider();
+
+    return this.auth().signInWithPopup(provider);
+  };
+
   handleSocialLogin = provider => {
-    console.log('PRO', provider);
     if (!this.props[`${provider}`]) return;
+
     this.handleStartAsync(provider);
-    auth
-      .socialLogin(provider)
+    this.socialLogin(provider)
       .then(user => {
         this.setState({ loading: false });
         console.log(user);
@@ -211,7 +260,7 @@ class Container extends Component {
   handlePasswordReset = email => {
     if (!this.props.passwordReset) return;
     this.handleStartAsync('password');
-    return auth
+    return this.auth()
       .sendPasswordResetEmail(email)
       .then(() => {
         this.setState({ loading: false });

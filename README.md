@@ -5,9 +5,9 @@
 [![npm version](https://badge.fury.io/js/frothy.svg)](https://badge.fury.io/js/frothy)
 [![Open Source Love](https://badges.frapsoft.com/os/mit/mit.svg?v=102)](https://github.com/ellerbrock/open-source-badge/)
 
-![Screenshot](screenshot.png)
-
 ### [Interactive Demo](https://frothy-123.firebaseapp.com/)
+
+![Screenshot](screenshot.png)
 
 #### Frothy supports the following Firebase authentication features:
 
@@ -76,6 +76,20 @@ Prefer a modal?
 <Frothy modal />
 ```
 
+By default, Frothy expects the development build of the Firebase SDK.
+
+`import firebase from 'firebase`;
+
+However, it is possible to manually pass in the Firebase auth method,
+// which allows you to use a production build of Firebase.
+
+```js
+import 'firebase' from 'firebase/app';
+const auth = firebase.auth;
+
+<Frothy auth={auth} />
+```
+
 ## Accessing User and Authentication State
 
 Firebase offers a couple convenient methods to access the user and authentication state:
@@ -117,9 +131,14 @@ Out of the box, a Frothy instance includes all of the supported Firebase feature
 Here is a Frothy instance with all of the available props set to their default values. In other words, the examples below is the same as just using `<Frothy />`.
 
 ```js
+import Frothy from 'frothy';
+import firebase from 'firebase/app';
 import { Button } from './common';
 
 <Frothy
+  auth={firebase.auth} // Optionally pass in the firebase.auth method. By default, this library
+  // uses the development build of the Firebase SDK, which is not recommended for production.
+
   // Modal
   modal={false} // If true, the login form becomes a modal and provides a button to toggle
   modalButton={<Button>Sign In</Button>} // Accepts a component instance
@@ -156,6 +175,7 @@ Here is the full list of the `propTypes` and `defaultProps` that are available:
 
 ```js
 Frothy.propTypes = {
+  auth: PropTypes.func,
   // Modal
   modal: PropTypes.bool,
   modalButton: PropTypes.element,
@@ -195,6 +215,10 @@ Frothy.propTypes = {
 };
 
 Frothy.defaultProps = {
+  auth={() => {
+    const firebase = require('firebase');
+    return firebase.auth;
+  }}
   // Modal
   modal: false,
   modalButton: <ModalButton />,
@@ -243,15 +267,26 @@ After initially writing all of the styles with inline JavaScript, it was decided
 * Recaptcha support for signup form
 * Custom error config
 
-If you would like to contribute, that would be awesome!
+## Contributing
+
+If you would like to contribute, that would be awesome! If you'd like to write some Jest tests, that would be the best!
 
 Here is how to get started on your own development server.
 
+Frothy
+
 * `git clone git@github.com:gojutin/frothy.git`
 * `cd frothy`
-* `npm i`
-* `npm run dev`
-* visit `localhost:8000` in your browser
-* `npm run docs:prod` runs a production build
+* `yarn`
+* `yarn start`
+* `yarn run build` runs a production build
+
+Frothy Demo
+
+* `cd docs`
+* `yarn`
+* `yarn start`
+* visit `localhost:3000` in your browser
+* `yarn run build` runs a production build
 
 Made with :green_heart: by a vegan

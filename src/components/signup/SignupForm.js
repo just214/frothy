@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Input, Button, Checkbox } from '../common';
-import firebase from 'firebase';
 
 class LoginForm extends Component {
   state = {

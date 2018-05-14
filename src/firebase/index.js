@@ -1,56 +1,58 @@
-import firebase from 'firebase';
+// import firebase from 'firebase/app';
 
-const auth = firebase.auth;
+// const auth = firebase.auth;
 
-export const createUserWithEmailAndPassword = (email, password) =>
-  auth().createUserWithEmailAndPassword(email, password);
+// // const auth = firebase.auth;
 
-export const signInWithEmailAndPassword = (email, password) =>
-  auth().signInWithEmailAndPassword(email, password);
+// export const createUserWithEmailAndPassword = (email, password) =>
+//   auth().createUserWithEmailAndPassword(email, password);
 
-export const signInAnonymously = () => firebase.auth().signInAnonymously();
+// export const signInWithEmailAndPassword = (email, password) =>
+//   auth().signInWithEmailAndPassword(email, password);
 
-export const signOut = () => auth().signOut();
+// export const signInAnonymously = () => firebase.auth().signInAnonymously();
 
-export const sendPasswordResetEmail = email =>
-  auth().sendPasswordResetEmail(email);
+// export const signOut = () => auth().signOut();
 
-export const socialLogin = providerName => {
-  const getProvider = () => {
-    switch (providerName) {
-      case 'facebook':
-        return new auth.FacebookAuthProvider();
-      case 'google':
-        return new auth.GoogleAuthProvider();
-      case 'twitter':
-        return new auth.TwitterAuthProvider();
-      case 'github':
-        return new auth.GithubAuthProvider();
-      default:
-        break;
-    }
-  };
+// export const sendPasswordResetEmail = email =>
+//   auth().sendPasswordResetEmail(email);
 
-  const provider = getProvider();
+// export const socialLogin = providerName => {
+//   const getProvider = () => {
+//     switch (providerName) {
+//       case 'facebook':
+//         return new auth.FacebookAuthProvider();
+//       case 'google':
+//         return new auth.GoogleAuthProvider();
+//       case 'twitter':
+//         return new auth.TwitterAuthProvider();
+//       case 'github':
+//         return new auth.GithubAuthProvider();
+//       default:
+//         break;
+//     }
+//   };
 
-  return auth().signInWithPopup(provider);
-};
+//   const provider = getProvider();
 
-export const signInWithPhoneNumber = phoneNumber => {
-  var appVerifier = window.recaptchaVerifier;
-  return auth().signInWithPhoneNumber(phoneNumber, appVerifier);
-};
+//   return auth().signInWithPopup(provider);
+// };
 
-export const firebaseError = error => {
-  switch (error.code) {
-    case 'auth/operation-not-allowed':
-      return 'This feature is not enabled at this time.';
-    case 'auth/account-exists-with-different-credential':
-      return 'This email address is registered under a different account.';
-    default:
-      return error.message;
-  }
-};
+// export const signInWithPhoneNumber = phoneNumber => {
+//   var appVerifier = window.recaptchaVerifier;
+//   return auth().signInWithPhoneNumber(phoneNumber, appVerifier);
+// };
+
+// export const firebaseError = error => {
+//   switch (error.code) {
+//     case 'auth/operation-not-allowed':
+//       return 'This feature is not enabled at this time.';
+//     case 'auth/account-exists-with-different-credential':
+//       return 'This email address is registered under a different account.';
+//     default:
+//       return error.message;
+//   }
+// };
 
 // let errors = {
 //   'argument-error': '',

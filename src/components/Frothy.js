@@ -30,6 +30,9 @@ const ModalButton = props => (
 );
 
 Frothy.propTypes = {
+  // Firebase
+  auth: PropTypes.func,
+
   // Modal
   modal: PropTypes.bool,
   modalButton: PropTypes.element,

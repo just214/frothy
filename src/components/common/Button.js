@@ -5,7 +5,7 @@ import styled from 'styled-components';
 const StyledButton = styled.button`
   width: ${props => (props.width ? props.width : '90%')};
   border: none;
-  height: 35px;
+  height: 40px;
   border-radius: 4px;
   font-size: 14px;
   line-height: 14px;

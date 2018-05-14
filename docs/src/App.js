@@ -8,6 +8,8 @@ import firebase from 'firebase';
 import HomeScreen from './components/HomeScreen';
 import LoginScreen from './components/LoginScreen';
 
+const { auth } = firebase;
+
 class App extends Component {
   state = {
     loggedIn: false,
@@ -15,7 +17,7 @@ class App extends Component {
   };
 
   componentDidMount() {
-    this.authListener = firebase.auth().onAuthStateChanged(user => {
+    this.authListener = auth().onAuthStateChanged(user => {
       if (user) {
         this.setState({ loggedIn: true, user });
       } else {

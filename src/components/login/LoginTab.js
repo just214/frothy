@@ -63,6 +63,7 @@ class LoginTab extends Component {
                 cancelTextSent={this.props.cancelTextSent}
                 recaptcha={this.props.recaptcha}
                 recaptchaBadge={this.props.recaptchaBadge}
+                themeColor={this.props.themeColor}
               />
             </div>
           </Collapse>

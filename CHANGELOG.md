@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.1.0] - 2018-05-14
+
+### Added
+
+* Added `auth` prop that allows you to optionally pass the Firebase.auth method that the Frothy library should use. By default, Frothy will use the development build of the Firebase SDK.
+
+### Changed
+
+* Minor code refactors.
+
+### Changed
+
+* Fixed styling issue where the screen was flashing between tabs on mobile.
+* Small internal code refactors. No changes to the API.
+
 ## [0.0.9] - 2018-05-13
 
 Happy Mother's Day to all the moms out there!

@@ -13,12 +13,10 @@ const TabBase = styled(Tab)`
   width: 30%;
   text-align: center;
   display: inline-block;
-  -webkit-tap-highlight-color: transparent;
 `;
 
 const TabContent = styled.div`
   color: ${props => (props.isSelected ? props.themeColor : '#707070')};
-  -webkit-tap-highlight-color: transparent;
   :hover {
     color: ${props => props.themeColor};
   }
@@ -53,6 +51,17 @@ class TabsComponent extends Component {
 
     return (
       <div>
+        {/* This ugly inline style tag is the only way I have figured out how to remove 
+      the flash of gray when switching tabs on the iPhone. */}
+        <style
+          dangerouslySetInnerHTML={{
+            __html: `
+            .react-tabs { 
+              -webkit-tap-highlight-color:  transparent;
+              }
+            `,
+          }}
+        />
         <Tabs
           selectedIndex={this.state.tabIndex}
           onSelect={tabIndex => this.setState({ tabIndex })}

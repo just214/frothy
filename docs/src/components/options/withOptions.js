@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import Drawer from 'material-ui/Drawer';
 
+import Drawer from 'material-ui/Drawer';
 import StyleOptions from './StyleOptions';
 import ColorOptions from './ColorOptions';
 
@@ -198,7 +198,7 @@ const withOptions = FrothyComponent =>
               style={{
                 position: 'absolute',
                 top: 10,
-                left: 10,
+                left: 5,
                 display: 'flex',
                 alignItems: 'center',
               }}
