@@ -118,6 +118,7 @@ class PasswordResetForm extends Component {
               <Select
                 value={this.state.countryCode}
                 onChange={this.onChangeCountryCode}
+                aria-label="Country"
               >
                 {countrycodes.map(cc => (
                   <Option key={cc.name + cc.callingCode} value={cc.code}>

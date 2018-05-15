@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import Drawer from 'material-ui/Drawer';
 import StyleOptions from './StyleOptions';
 import ColorOptions from './ColorOptions';
+import Checkbox from 'material-ui/Checkbox';
 
 import { Container } from '../common';
 import CheckboxList from './CheckboxList';
@@ -10,6 +11,7 @@ import Button from 'material-ui/Button';
 import Icon from 'material-ui/Icon';
 import Radio from 'material-ui/Radio';
 import CodeBox from './CodeBox';
+import PasswordOptions from './PasswordOptions';
 
 const withOptions = FrothyComponent =>
   class Options extends Component {
@@ -26,6 +28,15 @@ const withOptions = FrothyComponent =>
       // AUTH
       emailLogin: true,
       emailSignup: true,
+      passwordRules: {
+        show: true,
+        min: 6,
+        max: 50,
+        uppercase: 0,
+        lowercase: 0,
+        symbols: 0,
+        numbers: 0,
+      },
       agree: false,
       emailRemember: true,
       passwordReset: true,
@@ -67,9 +78,27 @@ const withOptions = FrothyComponent =>
       });
     };
 
+    changePasswordRule = (type, value) => {
+      this.setState(prevState => ({
+        passwordRules: {
+          ...prevState.passwordRules,
+          [`${type}`]: value,
+        },
+      }));
+    };
+
     handleCheckbox = name => {
       this.setState(prevState => ({
         [`${name}`]: !prevState[`${name}`],
+      }));
+    };
+
+    handleShowPasswordRuleCheckbox = name => {
+      this.setState(prevState => ({
+        passwordRules: {
+          ...prevState.passwordRules,
+          show: !prevState.passwordRules.show,
+        },
       }));
     };
 
@@ -85,6 +114,7 @@ const withOptions = FrothyComponent =>
               tabIndex={0}
               style={{ marginLeft: '10px', marginTop: '20px' }}
               role="button"
+              aria-label="Drawer Toggle"
               onClick={this.toggleDrawer}
               onKeyDown={this.toggleDrawer}
             >
@@ -104,7 +134,6 @@ const withOptions = FrothyComponent =>
             <div
               style={{
                 width: '285px',
-
                 padding: '20px',
                 paddingTop: '0px',
               }}
@@ -142,6 +171,16 @@ const withOptions = FrothyComponent =>
                   'emailRemember',
                   'passwordReset',
                 ]}
+              />
+              <h5>PASSWORD RULES</h5>
+              <Checkbox
+                checked={this.state.passwordRules.show}
+                onChange={this.handleShowPasswordRuleCheckbox}
+              />show
+              <br />
+              <PasswordOptions
+                passwordRules={this.state.passwordRules}
+                changePasswordRule={this.changePasswordRule}
               />
               <h5>SOCIAL</h5>
               <CheckboxList

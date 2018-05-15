@@ -36,12 +36,14 @@ const Input = styled.input`
   font-size: 16px;
   box-shadow: none;
   border: none;
-  /* border: 1px solid lightgray;
-  border-radius: 3px; */
   outline: none;
   padding: 0px 10px;
   font-family: 'Roboto', sans-serif;
   margin: 5px;
 `;
+
+const SInput = props => (
+  <StyledInput {...props} aria-label={props.placeholder} />
+);
 
 export { Input };

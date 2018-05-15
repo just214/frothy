@@ -16,7 +16,7 @@ const Select = styled.select`
 `;
 const Option = styled.option`
   line-height: 30px;
-  font-size: 14px;
+  font-size: 16px;
   outline: none;
   padding: 0px 10px;
   font-family: 'Roboto', sans-serif;

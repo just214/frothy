@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.1.2] - 2018-05-15
+
+### Added
+
+* Now you can define your own password requirements for email signup using the `passwordRules` prop. You can optionally show a list of the password requirements in the signup form. Each items gets validated as the user types and a green checkmark appears next to each list item as it is validated.
+
+### Changed
+
+* Made several small improvements to the library and demo app based on recommendations from a Chrome DevTools Audit, including performance optimizations and aria-labels.
+* The social login buttons now rotate instead of switching to a spinner.
+* Fixed an issue where the spinner was not displaying correctly on the "SIGN UP" button.
+* Updated README screenshot to reflect new style changes.
+* Updated demo to include new password rules props.
+
 ## [0.1.1] - 2018-05-14
 
 ### Added

@@ -1,7 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
-import SyntaxHighlighter from 'react-syntax-highlighter';
-import { docco } from 'react-syntax-highlighter/styles/hljs';
+import SyntaxHighlighter, {
+  registerLanguage,
+} from 'react-syntax-highlighter/light';
+import js from 'react-syntax-highlighter/languages/hljs/javascript';
+import docco from 'react-syntax-highlighter/styles/hljs/docco';
+
+registerLanguage('javascript', js);
 
 const Container = styled.div`
   text-align: left;
@@ -33,6 +38,15 @@ import Frothy from 'frothy';
   emailLogin={${props.emailLogin}}
   emailRemember={${props.emailRemember}}
   emailSignup={${props.emailSignup}}
+  passwordRules={{
+    show: ${props.passwordRules.show},
+    min: ${props.passwordRules.min},
+    max: ${props.passwordRules.max},
+    uppercase: ${props.passwordRules.uppercase},
+    lowercase: ${props.passwordRules.lowercase},
+    symbols: ${props.passwordRules.symbols},
+    numbers: ${props.passwordRules.numbers},
+  }}
   agree={${props.agree}}
   passwordReset={${props.passwordReset}}
   phone={${props.phone}}

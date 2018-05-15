@@ -1,13 +1,36 @@
 {
   "short_name": "Frothy",
   "name": "Frothy",
-  "icons": [
+  "icons2": [
     {
       "src": "favicon.ico",
       "sizes": "64x64 32x32 24x24 16x16",
       "type": "image/x-icon"
     }
   ],
+  "icons": [
+    {
+      "src": "frothy-icon-128.png",
+      "sizes": "128x128",
+      "type": "image/png"
+    },
+    {
+      "src": "frothy-icon-144.png",
+      "sizes": "144x144",
+      "type": "image/png"
+    },
+    {
+      "src": "frothy-icon-196.png",
+      "sizes": "196x196",
+      "type": "image/png"
+    },
+    {
+      "src": "frothy-icon-558.png",
+      "sizes": "558x558",
+      "type": "image/png"
+    }
+  ],
+  "orientation": "portrait",
   "description": "A customizable, drop-in login form for Firebase and React.",
   "start_url": "./index.html",
   "display": "standalone",

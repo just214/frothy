@@ -19,6 +19,7 @@ const LoginScreen = props => {
         href="https://github.com/gojutin/frothy#readme"
         style={{ margin: '0px' }}
         variant="flat"
+        rel="noopener noreferrer"
       >
         view on github
       </Button>

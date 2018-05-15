@@ -1,6 +1,6 @@
 {
   "name": "frothy",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "A customizable, drop-in login form for Firebase and React.",
   "author": "gojutin",
   "license": "MIT",

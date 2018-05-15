@@ -1,16 +1,27 @@
 import React from 'react';
-import SpinnerIcon from '../../icons/spinner.dark.svg';
 import GoogleIcon from '../../icons/google.svg';
 import FacebookIcon from '../../icons/facebook.svg';
 import TwitterIcon from '../../icons/twitter.svg';
 import GithubIcon from '../../icons/github.svg';
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
+
+const rotate360 = keyframes`
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+`;
 
 const StyledButton = styled.div`
   height: 48px;
   width: 48px;
   border-radius: 50%;
   background-size: cover;
+
+  animation: ${props => (props.loading ? rotate360 : '')} 2s linear infinite;
 
   cursor: pointer;
   outline: none;
@@ -64,24 +75,17 @@ const SocialLogin = props => {
             <StyledButton
               themeColor={props.themeColor}
               onClick={() => handleSocialLogin(provider.name)}
+              loading={props.provider === provider.name && props.loading}
             >
-              {props.provider === provider.name && props.loading ? (
-                <img
-                  src={SpinnerIcon}
-                  alt="spinner"
-                  style={{ marginTop: '12px' }}
-                />
-              ) : (
-                <img
-                  src={provider.icon}
-                  alt={`${provider.name} social login button`}
-                  style={{
-                    // paddingTop: '3px',
-                    backgroundSize: 'cover',
-                    width: '100%',
-                  }}
-                />
-              )}
+              <img
+                src={provider.icon}
+                alt={`${provider.name} social login button`}
+                style={{
+                  // paddingTop: '3px',
+                  backgroundSize: 'cover',
+                  width: '100%',
+                }}
+              />
             </StyledButton>
             {props.showLabels ? <small>{provider.displayName}</small> : null}
           </SocialWrapper>

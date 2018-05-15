@@ -158,9 +158,7 @@ class Container extends Component {
       .then(user => {
         this.setState({ loading: false });
       })
-      .catch(error => {
-        this.handleError(error);
-      });
+      .catch(error => this.handleError(error));
   };
 
   handleEmailLogin = (email, password, remember) => {
@@ -183,7 +181,6 @@ class Container extends Component {
     return this.auth()
       .signInWithPhoneNumber(phoneNumber, appVerifier)
       .then(confirmationResult => {
-        console.log(confirmationResult);
         this.setState({
           loading: false,
           textSent: true,
@@ -253,7 +250,6 @@ class Container extends Component {
     this.socialLogin(provider)
       .then(user => {
         this.setState({ loading: false });
-        console.log(user);
       })
       .catch(error => this.handleError(error));
   };
@@ -384,13 +380,14 @@ class Container extends Component {
           {this.props.emailSignup ? (
             <TabPanel>
               <SignupForm
-                loading={this.props.loading && this.props.provider === 'email'}
+                loading={this.state.loading && this.state.provider === 'email'}
                 handleEmailSignup={this.handleEmailSignup}
                 savedEmail={this.state.savedEmail}
                 themeColor={this.props.themeColor}
                 recaptcha={this.props.recaptcha}
                 agree={this.props.agree}
                 agreeMessage={this.props.agreeMessage}
+                passwordRules={this.props.passwordRules}
               />
             </TabPanel>
           ) : null}

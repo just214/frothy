@@ -159,6 +159,15 @@ import { Button } from './common';
   emailLogin={true} // Enable email login
   emailRemember={true} // Enable "Remember me" checkbox (localStorage)
   emailSignup={true} // Enable email signup
+  passwordRules={{
+    show: true, // Shows the password requirements list at the bottom of the signup form
+    min: 6, // The minimum number of total characters
+    max: 50, // The maximum number of total characters
+    lowercase: 0, // The minimum number of lowercase letters
+    uppercase: 0, // The minimum number of uppercase letters
+    symbols: 0, // The minimum number of symbols / special characters
+    numbers: 0, // The minimum number of numbers
+  }}
   agree={false} // Include a checkbox for the user to agree to terms, privacy policy, etc..
   agreeMessage="I agree to the terms of service." // Accepts a component instance or a string
   passwordReset={true} // Enable password reset
@@ -199,6 +208,15 @@ Frothy.propTypes = {
   emailLogin: PropTypes.bool,
   emailRemember: PropTypes.bool,
   emailSignup: PropTypes.bool,
+  passwordRules: PropTypes.shape({
+    show: PropTypes.bool,
+    min: PropTypes.number,
+    max: PropTypes.number,
+    lowercase: PropTypes.number,
+    uppercase: PropTypes.number,
+    symbols: PropTypes.number,
+    numbers: PropTypes.number,
+  }),
   agree: PropTypes.bool,
   agreeMessage: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
   passwordReset: PropTypes.bool,
@@ -242,6 +260,15 @@ Frothy.defaultProps = {
   emailLogin: true,
   emailRemember: true,
   emailSignup: true,
+  passwordRules: {
+    show: true,
+    min: 6,
+    max: 50,
+    lowercase: 0,
+    uppercase: 0,
+    symbols: 0,
+    numbers: 0,
+  },
   agree: false,
   agreeMessage: 'I agree to the terms of service.',
   passwordReset: true,

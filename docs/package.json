@@ -1,11 +1,9 @@
 {
   "name": "frothy-demo",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "private": false,
   "license": "MIT",
   "dependencies": {
-    "@firebase/app": "^0.3.1",
-    "@firebase/auth": "^0.5.2",
     "firebase": "^5.0.2",
     "frothy": "^0.0.7",
     "material-ui": "^1.0.0-beta.47",
@@ -13,10 +11,13 @@
     "react": "^16.2.0",
     "react-color": "^2.14.1",
     "react-dom": "^16.2.0",
+    "react-dom-confetti": "^0.0.10",
     "react-router-dom": "^4.2.2",
     "react-scripts": "^1.1.1",
     "react-syntax-highlighter": "^7.0.4",
-    "styled-components": "^3.2.6"
+    "styled-components": "^3.2.6",
+    "typeface-indie-flower": "^0.0.54",
+    "typeface-roboto": "^0.0.54"
   },
   "scripts": {
     "start": "react-scripts start",

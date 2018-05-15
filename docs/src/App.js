@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
+import 'typeface-roboto';
+import 'typeface-indie-flower';
 
 // Firebase
 import firebase from 'firebase/app';

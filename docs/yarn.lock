@@ -13,7 +13,7 @@
   version "0.3.1"
   resolved "https://registry.yarnpkg.com/@firebase/app-types/-/app-types-0.3.1.tgz#df4e79c38f759e606a421e866cecb7da4577b606"
 
-"@firebase/app@0.3.1", "@firebase/app@^0.3.1":
+"@firebase/app@0.3.1":
   version "0.3.1"
   resolved "https://registry.yarnpkg.com/@firebase/app/-/app-0.3.1.tgz#282a217bc904fd5168e43c3e2d30e6658ceca278"
   dependencies:
@@ -27,7 +27,7 @@
   version "0.3.2"
   resolved "https://registry.yarnpkg.com/@firebase/auth-types/-/auth-types-0.3.2.tgz#fc636084eb82cb098e4e76efc5fffd315e22abdd"
 
-"@firebase/auth@0.5.2", "@firebase/auth@^0.5.2":
+"@firebase/auth@0.5.2":
   version "0.5.2"
   resolved "https://registry.yarnpkg.com/@firebase/auth/-/auth-0.5.2.tgz#f4d7b699e21523b412f5af21a5507f44625d056c"
   dependencies:
@@ -2273,6 +2273,10 @@ doctrine@^2.0.0:
   resolved "https://registry.yarnpkg.com/doctrine/-/doctrine-2.1.0.tgz#5cd01fc101621b42c4cd7f5d1a66243716d3f39d"
   dependencies:
     esutils "^2.0.2"
+
+dom-confetti@~0.0.11:
+  version "0.0.11"
+  resolved "https://registry.yarnpkg.com/dom-confetti/-/dom-confetti-0.0.11.tgz#755bd77544202e38573d26463cd00cf648263a60"
 
 dom-converter@~0.1:
   version "0.1.4"
@@ -6127,6 +6131,12 @@ react-dev-utils@^5.0.1:
     strip-ansi "3.0.1"
     text-table "0.2.0"
 
+react-dom-confetti@^0.0.10:
+  version "0.0.10"
+  resolved "https://registry.yarnpkg.com/react-dom-confetti/-/react-dom-confetti-0.0.10.tgz#6cde7af4af974ecf98ddf9da95c938144c68a4f0"
+  dependencies:
+    dom-confetti "~0.0.11"
+
 react-dom@^16.2.0:
   version "16.3.2"
   resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-16.3.2.tgz#cb90f107e09536d683d84ed5d4888e9640e0e4df"
@@ -7466,6 +7476,10 @@ type-is@~1.6.15, type-is@~1.6.16:
 typedarray@^0.0.6:
   version "0.0.6"
   resolved "https://registry.yarnpkg.com/typedarray/-/typedarray-0.0.6.tgz#867ac74e3864187b1d3d47d996a78ec5c8830777"
+
+typeface-indie-flower@^0.0.54:
+  version "0.0.54"
+  resolved "https://registry.yarnpkg.com/typeface-indie-flower/-/typeface-indie-flower-0.0.54.tgz#eb988134d67982c3c35be12389db0c1c247869eb"
 
 typeface-roboto@^0.0.54:
   version "0.0.54"

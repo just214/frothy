@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Input, Button, Checkbox, Divider } from '../common';
+import Requirements from './Requirements';
 
 class LoginForm extends Component {
   state = {
@@ -11,6 +12,13 @@ class LoginForm extends Component {
     confirmPasswordIsValid: false,
     rememberMe: true,
     agreeToTerms: false,
+    passwordIsValid: false,
+    passwordMinIsValid: false,
+    passwordMaxIsValid: false,
+    passwordSymbolsIsValid: false,
+    passwordNumbersIsValid: false,
+    passwordUppercaseIsValid: false,
+    passwordLowercaseIsValid: false,
   };
 
   componentDidMount() {
@@ -28,11 +36,71 @@ class LoginForm extends Component {
     return re.test(String(email).toLowerCase());
   };
 
-  validatePassword = password => {
-    return password.length >= 6;
+  validatePasswordMin = password =>
+    password.length >= this.props.passwordRules.min;
+
+  validatePasswordMax = password =>
+    password.length <= this.props.passwordRules.max;
+
+  validatePasswordSymbols = password => {
+    if (this.props.passwordRules.symbols == 0) return true;
+    // The double \\ is due to prettier removing a single \
+    const check = '[!@#$%^&*\\-_+=<>\\(\\)\\[\\]\\(\\)?/:;~|"\']';
+    // check the regex against the number of symbols required per the props.
+    const pattern = new RegExp(check + `{${this.props.passwordRules.symbols}}`);
+    //
+    return pattern.test(String(password));
   };
 
-  validateConfirmPassword = (pw1, pw2) => pw1 === pw2 && pw2.length >= 6;
+  validatePasswordUppercase = password => {
+    if (this.props.passwordRules.uppercase == 0) return true;
+    const check = `[A-Z]`;
+    // check the regex against the number of symbols required per the props.
+    const pattern = new RegExp(
+      check + `{${this.props.passwordRules.uppercase}}`,
+    );
+    return pattern.test(String(password));
+  };
+
+  validatePasswordLowercase = password => {
+    if (this.props.passwordRules.lowercase == 0) return true;
+    const check = `[a-z]`;
+    // check the regex against the number of symbols required per the props.
+    const pattern = new RegExp(
+      check + `{${this.props.passwordRules.lowercase}}`,
+    );
+    return pattern.test(String(password));
+  };
+
+  validatePasswordNumbers = password => {
+    if (this.props.passwordRules.numbers == 0) return true;
+    const check = `[0-9]`;
+    const pattern = new RegExp(check + `{${this.props.passwordRules.numbers}}`);
+    return pattern.test(password);
+  };
+
+  validatePassword = password => {
+    const min = this.validatePasswordMin(password);
+    const max = this.validatePasswordMax(password);
+    const uppercase = this.validatePasswordUppercase(password);
+    const lowercase = this.validatePasswordLowercase(password);
+    const symbols = this.validatePasswordSymbols(password);
+    const numbers = this.validatePasswordNumbers(password);
+
+    this.setState({
+      passwordMinIsValid: min,
+      passwordMaxIsValid: max,
+      passwordUppercaseIsValid: uppercase,
+      passwordLowercaseIsValid: lowercase,
+      passwordSymbolsIsValid: symbols,
+      passwordNumbersIsValid: numbers,
+      passwordIsValid:
+        min && max && symbols && uppercase && lowercase && numbers,
+    });
+  };
+
+  validateConfirmPassword = (pw1, pw2) =>
+    pw1 === pw2 && this.state.passwordIsValid;
 
   onChangeEmail = e => {
     this.setState({
@@ -42,9 +110,9 @@ class LoginForm extends Component {
   };
 
   onChangePassword = e => {
+    this.validatePassword(e.target.value);
     this.setState({
       password: e.target.value,
-      passwordIsValid: this.validatePassword(e.target.value),
       confirmPasswordIsValid: this.validateConfirmPassword(
         e.target.value,
         this.state.confirmPassword,
@@ -135,6 +203,12 @@ class LoginForm extends Component {
           >
             SIGN UP
           </Button>
+          {this.props.passwordRules.show ? (
+            <Requirements
+              {...this.state}
+              passwordRules={this.props.passwordRules}
+            />
+          ) : null}
         </form>
       </div>
     );

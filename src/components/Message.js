@@ -34,7 +34,7 @@ const getMessageTextColor = type => {
     case 'error':
       return '#EF5350';
     case 'success':
-      return '#00C851';
+      return 'green';
     default:
       return '#eee';
   }
