@@ -74,6 +74,7 @@ class LoginForm extends Component {
         />
         <Divider />
         <Input
+          id="login-email"
           type="password"
           value={this.state.password}
           onChange={this.onChangePassword}

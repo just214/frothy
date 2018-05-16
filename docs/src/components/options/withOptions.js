@@ -40,6 +40,7 @@ const withOptions = FrothyComponent =>
       agree: false,
       emailRemember: true,
       passwordReset: true,
+      autocomplete: true,
       phone: true,
       recaptcha: 'invisible',
       recaptchaBadge: 'inline',
@@ -219,11 +220,12 @@ const withOptions = FrothyComponent =>
                 <React.Fragment key={p}>
                   <Radio
                     key={p}
+                    style={{ width: '25%' }}
                     checked={this.state.recaptchaBadge === p}
                     onChange={() => this.setState({ recaptchaBadge: p })}
                     value={p}
                     name="recaptchaBadge"
-                    aria-label="normal"
+                    aria-label={p}
                     label={p}
                   />
                   {p}

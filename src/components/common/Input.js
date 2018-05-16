@@ -1,3 +1,4 @@
+import React from 'react';
 import styled from 'styled-components';
 
 import emailIcon from '../../icons/email.svg';
@@ -25,7 +26,7 @@ const getIcon = (icon, isValid) => {
   }
 };
 
-const Input = styled.input`
+const StyledInput = styled.input`
   background-image: url(${props => getIcon(props.icon, props.isValid)});
   background-repeat: no-repeat;
   background-position: 8px 8px;
@@ -42,8 +43,9 @@ const Input = styled.input`
   margin: 5px;
 `;
 
-const SInput = props => (
-  <StyledInput {...props} aria-label={props.placeholder} />
-);
+const Input = props => {
+  const { autocomplete, ...rest } = props;
+  return <StyledInput {...rest} aria-label={props.placeholder} />;
+};
 
 export { Input };

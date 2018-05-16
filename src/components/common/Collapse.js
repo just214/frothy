@@ -11,8 +11,10 @@ const PanelContainer = styled.div`
   justify-content: center;
 `;
 
-const PanelContent = styled.small`
+const PanelContent = styled.p`
   color: ${props => (props.isOpen ? '#82b1ff' : props.themeColor)};
+  margin: 3px;
+  font-size: 14px;
 `;
 
 const duration = 100;

@@ -112,7 +112,7 @@ class TabsComponent extends Component {
                       height: 0,
                       border: `1px solid ${this.props.themeColor}`,
                       width: '80px',
-                      marginLeft: '21%',
+                      marginLeft: '22%',
                       backgroundColor: this.props.backgroundColor,
                     }}
                   />

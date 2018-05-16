@@ -1,11 +1,25 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import { Button } from '../common';
 import UserIcon from '../../icons/user.svg';
 
+const rotate360 = keyframes`
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+`;
+
+const Icon = styled.img`
+  animation: ${props => (props.loading ? rotate360 : '')} 2s linear infinite;
+`;
+
 const Container = styled.div`
   cursor: pointer;
-  margin-top: 5px;
+  margin-top: 10px;
   margin-bottom: 10px;
   opacity: 0.8;
 `;
@@ -24,10 +38,13 @@ const AnonymousLogin = props => {
         type="submit"
         themeColor={'#eee'}
         onClick={props.handleAnonymousLogin}
-        loading={props.loading}
       >
         <ButtonContents>
-          <img src={UserIcon} alt="Anonymous Login Button" />
+          <Icon
+            loading={props.loading}
+            src={UserIcon}
+            alt="Anonymous Login Button"
+          />
           <span>&nbsp;LOG IN ANONYMOUSLY</span>
         </ButtonContents>
       </Button>

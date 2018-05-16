@@ -11,7 +11,7 @@ import Transition from 'react-transition-group/Transition';
 
 const StyledContainer = styled.div`
   width: 340px;
-  min-height: 510px;
+  min-height: 525px;
   font-family: 'Roboto', sans-serif;
   max-width: 100%;
   height: auto;
@@ -373,6 +373,7 @@ class Container extends Component {
                 savedEmail={this.state.savedEmail}
                 textSent={this.state.textSent}
                 cancelTextSent={this.cancelTextSent}
+                autocomplete={this.props.autocomplete}
               />
             </TabPanel>
           ) : null}

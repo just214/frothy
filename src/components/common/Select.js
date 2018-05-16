@@ -6,8 +6,6 @@ const Select = styled.select`
   line-height: 18px;
   font-size: 16px;
   border: none;
-  /* border: 1px solid lightgray;
-  border-radius: 1px; */
   outline: none;
   padding: 0px 10px;
   font-family: 'Roboto', sans-serif;

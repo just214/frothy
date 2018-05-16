@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.1.3] - 2018-05-16
+
+### Changed
+
+* Swapped out the spinner for a spinning icon on the "Log In Anonymously" button.
+* Fixed Aria labels on inputs and selects.
+* Increased font size of collapse titles for better accessibility.
+* Complete overhaul of the README with the table of contents and better props documentation.
+
 ## [0.1.2] - 2018-05-15
 
 ### Added

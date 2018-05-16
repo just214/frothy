@@ -1,4 +1,4 @@
-# ![Logo](frothy_icon.png) Frothy
+# ![Logo](../frothy_icon.png) Frothy
 
 ## A customizable, drop-in login form for Firebase and React.
 
@@ -7,9 +7,25 @@
 
 ### [Interactive Demo](https://frothy-123.firebaseapp.com/)
 
-![Screenshot](screenshot.png)
+![Screenshot](../screenshot.png)
 
-#### Frothy supports the following Firebase authentication features:
+## Table of Contents
+
+[About](#about)  
+[Getting Started](#getting-started)  
+[Props](#props)  
+[Default Props](#default-props)  
+[Accessing User and Authentication State](#access-user)  
+[Design Decisions](#design-decisions)  
+[What's next?](#whats-next)  
+[Contributing](#contributing)
+
+<a name="about"/>
+##  About
+
+Frothy is a highly customizable, drop-in authentication form component built with [React](https://reactjs.org/), the [Firebase SDK](https://firebase.google.com/docs/database/web/start) and [Styled-Components](https://www.styled-components.com/). The library is approximately 104 KB minified and 25 KB gzipped.
+
+##### Frothy supports the following Firebase authentication features:
 
 * Login with Email/Password
 * Sign Up with Email/Password
@@ -21,21 +37,16 @@
 * Anonymous Login
 * Send Password Reset Link
 
-Frothy is built with [React](https://reactjs.org/), the [Firebase SDK](https://firebase.google.com/docs/database/web/start) and [Styled-Components](https://www.styled-components.com/).
+> Please Read: This is a new project and has not been thoroughly tested. At the moment, it is not recommended to use this library in production apps. If you'd like to help get it there, your contributions would be greatly appreciated! Currently, this library is not compatible with React Native due to DOM dependencies. This may change in the future.
 
-The total package size is as follows: minified- 103.96 KB / gzipped- 24.84 KB
-
+<a name="getting-started"/>
 ## Getting Started
 
-Please Read: This is a new project and has not been thoroughly tested. At the moment, it is not recommended to use this library in production. If you'd like to help get it there, your contributions would be greatly appreciated!
-
-Currently, this library is not compatible with React Native due to DOM dependencies. This may change in the future.
-
-In order to use this component, you will need to install it with npm along with the `firebase` and `styled-components` npm packages.
+In order to use this component, it must be installed with npm along with the `firebase` and `styled-components` npm packages.
 
 `npm i frothy firebase styled-components` or `yarn add frothy firebase styled-components`
 
-You will also need to have Firebase configured for your React project. This process is simple (and free). Here is a rough overview of the process:
+Firebase must also be configured for your React project. This process is simple (and free). Here is a rough overview of the process:
 
 In Firebase:
 
@@ -62,7 +73,7 @@ const prodConfig = {
 firebase.initializeApp(config);
 ```
 
-Once Firebase is wired up, just import Frothy component and drop it in somewhere.
+Once Firebase is wired up, just import Frothy component and drop it into your app.
 
 ```js
 // import it
@@ -78,12 +89,9 @@ Prefer a modal?
 <Frothy modal />
 ```
 
-By default, Frothy expects the development build of the Firebase SDK.
+By default, Frothy takes care of grabbing the `firebase.auth` method and passing it to the components as long as you have the `firebase` npm package installed.
 
-`import firebase from 'firebase`;
-
-However, it is possible to manually pass in the Firebase auth method,
-// which allows you to use a production build of Firebase.
+However, it is possible to manually pass in the Firebase auth method, which allows you to use a production build of the Firebase SDK.
 
 ```js
 import 'firebase' from 'firebase/app';
@@ -92,6 +100,320 @@ import 'firebase/auth';
 <Frothy auth={firebase.auth} />
 ```
 
+<a name="props"/>
+## Props
+
+Out of the box, a Frothy instance includes all of the supported Firebase features outlined above. However, a Frothy instance can be customized to include only the features that you want to support via props. The component will automatically reconfigure it's layout based on the features that you have chosen to implement. Several styling props and other custom configuration options are also exposed and documented below.
+
+Here is a list of all of the props that Frothy exposes:
+
+### auth
+
+`PropTypes.func`
+
+Default Value: Firebase Development SDK
+
+Description: Optionally pass in the firebase.auth method. By default, this library uses the development build of the Firebase SDK, which is not recommended for production.
+
+> Be sure to check out the [Interactive Demo](https://frothy-123.firebaseapp.com/) where you can try out the majority of the available props.
+
+### modal
+
+`PropTypes.bool`
+
+Default Value: `false`
+
+Description: Optionally display as a modal. If true, the login form becomes a modal and provides a button to toggle the modal on and off. The button can be replaced with your own component.
+
+### modalButton
+
+`PropTypes.element`
+
+Default Value: `<Button>Sign In</Button>`
+
+Description: Accepts a React component instance. The toggle method will be automatically bound to the component that you provide.
+
+### modalOverlay
+
+`PropTypes.func`
+
+Default Value: `true`
+
+Description: Shows a background overlay when the modal is enabled and opened.
+
+### themeColor
+
+`PropTypes.string`
+
+Default Value: `"#2196F3"`
+
+Description: Sets the color of the tabs, buttons, and collapse menu titles.
+
+### showBorder
+
+`PropTypes.bool`
+
+Default Value: `true`
+
+Description: Shows or hides the outer box border.
+
+### rounded
+
+`PropTypes.oneOf([0, 1, 2, 3, 4, 5])`
+
+Default Value: `1`
+
+Description: Rounds the corners of the form. 0 = not rounded | 5 = most rounded
+
+### shadow
+
+`PropTypes.oneOf([0, 1, 2, 3, 4, 5])`
+
+Default Value: `2`
+
+Description: Applies a box shadow to the form. 0 = no shadow | 5 = thickest shadow
+
+### showLabels
+
+`PropTypes.bool`
+
+Default Value: `false`
+
+Description: Displays the provider name under the social icon buttons (i.e Google, Facebook).
+
+### title
+
+`PropTypes.oneOfType([PropTypes.string, PropTypes.element])`
+
+Default Value: `"Welcome to Frothy!"`
+
+Description: The main title at the top of the form. Accepts a component instance or a string.
+
+### titleColor
+
+`PropTypes.string`
+
+Default Value: `"#424242"`
+
+Description: The font color of the `title` prop.
+
+### titleBackgroundColor
+
+`PropTypes.string`
+
+Default Value: `"#ededed"`
+
+Description: The background color of the `title` area.
+
+### emailLogin
+
+`PropTypes.bool`
+
+Default Value: `true`
+
+Description: Enables and displays the email login form.
+
+### emailRemember
+
+`PropTypes.bool`
+
+Default Value: `true`
+
+Description: Enables the "Remember me" checkbox, which is persisted with `localStorage`.
+
+### emailSignup
+
+`PropTypes.bool`
+
+Default Value: `true`
+
+Description: Enables and displays the email sign up form.
+
+### passwordRules
+
+```js
+PropTypes.shape({
+  show: PropTypes.bool,
+  min: PropTypes.number,
+  max: PropTypes.number,
+  lowercase: PropTypes.number,
+  uppercase: PropTypes.number,
+  symbols: PropTypes.number,
+  numbers: PropTypes.number,
+});
+```
+
+#### show
+
+Default Value: `true`
+
+Description: Toggles the password requirements list at the bottom of the signup form.
+
+#### min
+
+Default Value: `6`
+
+Description: Sets the minimum number of required characters. The default value of `6` is based on Firebase default requirements.
+
+#### max
+
+Default Value: `50`
+
+Description: Sets the maximum number of required characters.
+
+#### lowercase
+
+Default Value: `0`
+
+Description: Sets the minimum number of required lower case alphabetic characters.
+
+#### uppercase
+
+Default Value: `0`
+
+Description: Sets the minimum number of required upper case alphabetic characters.
+
+#### symbols
+
+Default Value: `0`
+
+Description: Sets the minimum number of required special (symbol) characters.
+
+#### numbers
+
+Default Value: `0`
+
+Description: Sets the minimum number of required numbers.
+
+### agree
+
+`PropTypes.bool`
+
+Default Value: `false`
+
+Description: Toggles a checkbox for the user to agree to terms in the sign up form.
+
+### agreeMessage
+
+`PropTypes.oneOfType([PropTypes.string, PropTypes.element])`
+
+Default Value: `"I agree to the terms of service."`
+
+Description: The text that appears next to the `agree` checkbox. Accepts a React component instance or a string. The React component instance allows you to pass in a link to the terms or privacy policy that the user is agreeing to.
+
+### passwordReset
+
+`PropTypes.bool`
+
+Default Value: `true`
+
+Description: Enables and displays the password reset form (collapse).
+
+### phone
+
+`PropTypes.bool`
+
+Default Value: `true`
+
+Description: Enables and displays the phone login form (collapse).
+
+### recaptcha
+
+`PropTypes.oneOf(['normal', 'invisible'])`
+
+Default Value: `"invisible"`
+
+Description: The phone login form includes Recaptcha. This prop allows you to set the recaptcha to either be invisible or normal (show the "Not a Robot" button in-line). If invisible, a badge will show up in the place of the button.
+
+### recaptchaBadge
+
+`PropTypes.oneOf(['inline', 'bottomright', 'bottomleft'])`
+
+Default Value: `"inline"`
+
+Description: Recaptcha requires that the user be notified if invisible Recaptcha is enabled. This prop allows you to display the badge that Recaptcha provides either in-line in the form or in the bottom corners of the page.
+
+### google
+
+`PropTypes.bool`
+
+Default Value: `true`
+
+Description: Enables Google login and enables the social login button.
+
+### facebook
+
+`PropTypes.bool`
+
+Default Value: `true`
+
+Description: Enables Facebook login and enables the social login button.
+
+### twitter
+
+`PropTypes.bool`
+
+Default Value: `true`
+
+Description: Enables Twitter login and enables the social login button.
+
+### github
+
+`PropTypes.bool`
+
+Default Value: `true`
+
+Description: Enables Github login and enables the social login button.
+
+<a name="default-props"/>
+## Default Props
+Here is a Frothy instance with all of the available props set to their default values. In other words, the examples below is the same as just using `<Frothy />`.
+
+```js
+import Frothy from 'frothy';
+import firebase from 'firebase';
+import { Button } from './common';
+
+<Frothy
+  auth={firebase.auth}
+  modal={false}
+  modalButton={<Button>Sign In</Button>}
+  modalOverlay={true}
+  themeColor="#2196F3"
+  showBorder={true}
+  rounded={1}
+  shadow={2}
+  showLabels={true}
+  title={'Welcome to Frothy!'}
+  titleColor="#424242"
+  titleBackgroundColor="#ededed"
+  emailLogin={true}
+  emailRemember={true}
+  emailSignup={true}
+  passwordRules={{
+    show: true,
+    min: 6,
+    max: 50,
+    lowercase: 0,
+    uppercase: 0,
+    symbols: 0,
+    numbers: 0,
+  }}
+  agree={false}
+  agreeMessage="I agree to the terms of service."
+  passwordReset={true}
+  phone={true}
+  recaptcha={'invisible'}
+  recaptchaBadge="inline"
+  anonymous={true}
+  google={true}
+  facebook={true}
+  twitter={true}
+  github={true}
+/>;
+```
+
+<a name="access-user"/>
 ## Accessing User and Authentication State
 
 Firebase offers a couple convenient methods to access the user and authentication state:
@@ -126,178 +448,23 @@ if (user) {
 
 The Frothy [demo](https://frothy-123.firebaseapp.com/) utilizes the Authentication State Observer to control access to routes based on authentication status. Feel free to dig into the demo's source code to see how this works.
 
-## Props
-
-Out of the box, a Frothy instance includes all of the supported Firebase features outlined above. However, a Frothy instance can be customized to include only the features that you want to support via props. The component will automatically reformat it's style based on the features that you have chosen to implement. A few additional styling props are also exposed for further customization.
-
-Here is a Frothy instance with all of the available props set to their default values. In other words, the examples below is the same as just using `<Frothy />`.
-
-```js
-import Frothy from 'frothy';
-import firebase from 'firebase/app';
-import { Button } from './common';
-
-<Frothy
-  auth={firebase.auth} // Optionally pass in the firebase.auth method. By default, this library
-  // uses the development build of the Firebase SDK, which is not recommended for production.
-
-  // Modal
-  modal={false} // If true, the login form becomes a modal and provides a button to toggle
-  modalButton={<Button>Sign In</Button>} // Accepts a component instance
-  modalOverlay={true} // Shows a background overlay when the modal is enabled and opened.
-  // General Styling
-  themeColor="#2196F3" // Sets the color of the tabs and buttons.
-  showBorder={true} // Shows or hide the box border
-  rounded={1} // 0 to 5 (not rounded to most rounded)
-  shadow={2} // 0 to 5 (no shadow to thickest shadow)
-  showLabels={true} // Displays the provider name under the social icon buttons
-  // Header Styles
-  title={'Welcome to Frothy!'} // Accepts a component instance or a string
-  titleColor="#424242"
-  titleBackgroundColor="#ededed"
-  // Auth Props
-  emailLogin={true} // Enable email login
-  emailRemember={true} // Enable "Remember me" checkbox (localStorage)
-  emailSignup={true} // Enable email signup
-  passwordRules={{
-    show: true, // Shows the password requirements list at the bottom of the signup form
-    min: 6, // The minimum number of total characters
-    max: 50, // The maximum number of total characters
-    lowercase: 0, // The minimum number of lowercase letters
-    uppercase: 0, // The minimum number of uppercase letters
-    symbols: 0, // The minimum number of symbols / special characters
-    numbers: 0, // The minimum number of numbers
-  }}
-  agree={false} // Include a checkbox for the user to agree to terms, privacy policy, etc..
-  agreeMessage="I agree to the terms of service." // Accepts a component instance or a string
-  passwordReset={true} // Enable password reset
-  phone={true} // Enable phone login
-  recaptcha={'invisible'} // invisible or normal (phone login only)
-  recaptchaBadge="inline" // inline, bottomright or bottomleft
-  anonymous={true} // Enable anonymous login
-  google={true} // Enable Google login
-  facebook={true} // Enable Facebook login
-  twitter={true} // Enable Twitter login
-  github={true} // Enable GitHub login
-/>;
-```
-
-Here is the full list of the `propTypes` and `defaultProps` that are available:
-
-```js
-Frothy.propTypes = {
-  auth: PropTypes.func,
-  // Modal
-  modal: PropTypes.bool,
-  modalButton: PropTypes.element,
-  modalOverlay: PropTypes.bool,
-
-  // General Styling
-  themeColor: PropTypes.string,
-  showBorder: PropTypes.bool,
-  rounded: PropTypes.oneOf([0, 1, 2, 3, 4, 5]),
-  shadow: PropTypes.oneOf([0, 1, 2, 3, 4, 5]),
-  showLabels: PropTypes.bool,
-
-  // Header Styling
-  title: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
-  titleColor: PropTypes.string,
-  titleBackgroundColor: PropTypes.string,
-
-  // Auth
-  emailLogin: PropTypes.bool,
-  emailRemember: PropTypes.bool,
-  emailSignup: PropTypes.bool,
-  passwordRules: PropTypes.shape({
-    show: PropTypes.bool,
-    min: PropTypes.number,
-    max: PropTypes.number,
-    lowercase: PropTypes.number,
-    uppercase: PropTypes.number,
-    symbols: PropTypes.number,
-    numbers: PropTypes.number,
-  }),
-  agree: PropTypes.bool,
-  agreeMessage: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
-  passwordReset: PropTypes.bool,
-  anonymous: PropTypes.bool,
-  phone: PropTypes.bool,
-  recaptcha: PropTypes.oneOf(['normal', 'invisible']),
-  recaptchaBadge: PropTypes.oneOf(['inline', 'bottomright', 'bottomleft']),
-  google: PropTypes.bool,
-  facebook: PropTypes.bool,
-  twitter: PropTypes.bool,
-  github: PropTypes.bool,
-
-  // Pass-throughs
-  style: PropTypes.object,
-  className: PropTypes.string,
-};
-
-Frothy.defaultProps = {
-  auth={() => {
-    const firebase = require('firebase');
-    return firebase.auth;
-  }}
-  // Modal
-  modal: false,
-  modalButton: <ModalButton />,
-  modalOverlay: true,
-
-  // General Styling
-  themeColor: '#2196F3',
-  showBorder: true,
-  rounded: 1,
-  shadow: 3,
-  showLabels: false,
-
-  // Header Styles
-  title: 'Welcome to Frothy!',
-  titleColor: '#424242',
-  titleBackgroundColor: '#ededed',
-
-  // Auth
-  emailLogin: true,
-  emailRemember: true,
-  emailSignup: true,
-  passwordRules: {
-    show: true,
-    min: 6,
-    max: 50,
-    lowercase: 0,
-    uppercase: 0,
-    symbols: 0,
-    numbers: 0,
-  },
-  agree: false,
-  agreeMessage: 'I agree to the terms of service.',
-  passwordReset: true,
-  phone: true,
-  recaptcha: 'invisible',
-  recaptchaBadge: 'inline',
-  anonymous: true,
-  google: true,
-  facebook: true,
-  twitter: true,
-  github: true,
-};
-```
-
+<a name="design-decision"/>
 ## Design Decisions
 
-This library aims to strike a nice balance of configuration options and simplicity.
+This library aims to strike a nice balance between plenty of configuration options and simplicity in getting started.
 
-After initially writing all of the styles with inline JavaScript, it was decided to refactor the project to use Styled-Components. The Styled-Components package is not included as a dependency due to the conflicts associated with having two installations in the same project. Instead, it is a required peer dependency that will need to be imported along with Firebase. Styled-Components includes vendor prefixing, which allows this package to be supported by more browsers. It also injects the styles directly into the document, which means that you do not need to require any additional CSS files.
+After initially writing all of the styles with in-line JavaScript, it was decided to refactor the project to use `styled-components`. The `styled-components` library is not included as a dependency due to the conflicts associated with having two installations in the same project. Instead, it is a required peer dependency that will need to be imported along with `firebase`. `styled-components` includes vendor prefixing, which allows this package to be supported by more browsers. It also injects the styles directly into the document, which means that you do not need to require any additional CSS files.
 
+<a name="whats-next"/>
 ## What's Next?
 
 * Tests
-* Support for custom password requirements
 * Token management?
-* Recaptcha support for signup form
+* Recaptcha support for signup form?
 * Custom error config
-* React Native support
+* React Native support?
 
+<a name="contributing"/>
 ## Contributing
 
 If you would like to contribute, that would be awesome! If you'd like to write some Jest tests, that would be the best!
@@ -320,4 +487,4 @@ Frothy Demo
 * visit `localhost:3000` in your browser
 * `yarn run build` runs a production build
 
-Made with :green_heart: by a vegan
+Made with :green_heart: by a vegan.

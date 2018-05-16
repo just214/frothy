@@ -34,18 +34,6 @@ const Requirements = props => {
         />
 
         <SingleRequirement
-          show={props.passwordRules.symbols !== 0}
-          valid={props.passwordSymbolsIsValid}
-          title={`At least ${props.passwordRules.symbols} symbols`}
-        />
-
-        <SingleRequirement
-          show={props.passwordRules.numbers !== 0}
-          valid={props.passwordNumbersIsValid}
-          title={`At least ${props.passwordRules.numbers} numbers`}
-        />
-
-        <SingleRequirement
           show={props.passwordRules.uppercase !== 0}
           valid={props.passwordUppercaseIsValid}
           title={`At least ${props.passwordRules.uppercase} uppercase letters`}
@@ -55,6 +43,18 @@ const Requirements = props => {
           show={props.passwordRules.lowercase !== 0}
           valid={props.passwordLowercaseIsValid}
           title={`At least ${props.passwordRules.lowercase} lowercase letters`}
+        />
+
+        <SingleRequirement
+          show={props.passwordRules.symbols !== 0}
+          valid={props.passwordSymbolsIsValid}
+          title={`At least ${props.passwordRules.symbols} symbols`}
+        />
+
+        <SingleRequirement
+          show={props.passwordRules.numbers !== 0}
+          valid={props.passwordNumbersIsValid}
+          title={`At least ${props.passwordRules.numbers} numbers`}
         />
       </Container>
     </div>
