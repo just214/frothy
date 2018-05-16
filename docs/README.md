@@ -1,4 +1,4 @@
-# ![Logo](frothy_icon.png) Frothy
+# ![Logo](../frothy_icon.png) Frothy
 
 ## A customizable, drop-in login form for Firebase and React.
 
@@ -7,7 +7,7 @@
 
 ### [Interactive Demo](https://frothy-123.firebaseapp.com/)
 
-![Screenshot](screenshot.png)
+![Screenshot](../screenshot.png)
 
 ## Table of Contents
 
