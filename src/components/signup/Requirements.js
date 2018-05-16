@@ -20,9 +20,10 @@ const Requirements = props => {
           margin: '3px',
           textDecoration: 'underline',
           marginTop: '15px',
+          fontSize: '14px',
         }}
       >
-        PASSWORD REQUIREMENTS:
+        PASSWORD REQUIREMENTS
       </p>
       <Container>
         <SingleRequirement

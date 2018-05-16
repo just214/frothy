@@ -1,15 +1,5 @@
-// import ExampleComponent from './';
-import React from 'react';
-import renderer from 'react-test-renderer';
-import Frothy from './components/Frothy';
+const sum = (a, b) => (b ? a + b : b => a + b);
 
-it('renders correctly', () => {
-  const tree = renderer.create(<Frothy />).toJSON();
-  expect(tree).toMatchSnapshot();
+test('adds 1 + 2 to equal 3', () => {
+  expect(sum(1, 2)).toBe(3);
 });
-
-// describe('ExampleComponent', () => {
-//   it('is truthy', () => {
-//     expect(ExampleComponent).toBeTruthy()
-//   })
-// })

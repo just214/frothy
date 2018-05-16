@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.1.4] - 2018-05-16
+
+### Changed
+
+* Fixed styling issue in README due to placement of anchor tags for table of contents.
+* Cleaned up some of the styling and aligned the icons in the input elements.
+* Minor code refactors- no API or breaking changes
+
 ## [0.1.3] - 2018-05-16
 
 ### Changed

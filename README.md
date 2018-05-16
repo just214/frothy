@@ -38,6 +38,17 @@ Frothy is a highly customizable, drop-in authentication form component built wit
 * Anonymous Login
 * Send Password Reset Link
 
+##### Here are just some of the features that Frothy provides:
+
+* Control over which Firebase authentication methods are included
+* Display as an inline form or a modal with a single prop setting
+* Plenty of styling configuration options
+* Recaptcha configuration options
+* Custom password rules
+* Smooth animations
+* No CSS imports required
+* WAI-ARIA compliant
+
 > Please Read: This is a new project and has not been thoroughly tested. At the moment, it is not recommended to use this library in production apps. If you'd like to help get it there, your contributions would be greatly appreciated! Currently, this library is not compatible with React Native due to DOM dependencies. This may change in the future.
 
 <a name="getting-started"/>
@@ -326,7 +337,7 @@ Description: Enables and displays the phone login form (collapse).
 
 Default Value: `"invisible"`
 
-Description: The phone login form includes Recaptcha. This prop allows you to set the recaptcha to either be invisible or normal (show the "Not a Robot" button in-line). If invisible, a badge will show up in the place of the button.
+Description: The phone login form includes Recaptcha. This prop allows you to set the recaptcha to either be invisible or normal (show the "Not a Robot" button inline). If invisible, a badge will show up in the place of the button.
 
 ### recaptchaBadge
 
@@ -334,7 +345,7 @@ Description: The phone login form includes Recaptcha. This prop allows you to se
 
 Default Value: `"inline"`
 
-Description: Recaptcha requires that the user be notified if invisible Recaptcha is enabled. This prop allows you to display the badge that Recaptcha provides either in-line in the form or in the bottom corners of the page.
+Description: Recaptcha requires that the user be notified if invisible Recaptcha is enabled. This prop allows you to display the badge that Recaptcha provides either inline in the form or in the bottom corners of the page.
 
 ### google
 
@@ -460,7 +471,7 @@ The Frothy [demo](https://frothy-123.firebaseapp.com/) utilizes the Authenticati
 
 This library aims to strike a nice balance between plenty of configuration options and simplicity in getting started.
 
-After initially writing all of the styles with in-line JavaScript, it was decided to refactor the project to use `styled-components`. The `styled-components` library is not included as a dependency due to the conflicts associated with having two installations in the same project. Instead, it is a required peer dependency that will need to be imported along with `firebase`. `styled-components` includes vendor prefixing, which allows this package to be supported by more browsers. It also injects the styles directly into the document, which means that you do not need to require any additional CSS files.
+After initially writing all of the styles with inline JavaScript, it was decided to refactor the project to use `styled-components`. The `styled-components` library is not included as a dependency due to the conflicts associated with having two installations in the same project. Instead, it is a required peer dependency that will need to be imported along with `firebase`. `styled-components` includes vendor prefixing, which allows this package to be supported by more browsers. It also injects the styles directly into the document, which means that you do not need to require any additional CSS files.
 
 <a name="whats-next"/>
 
