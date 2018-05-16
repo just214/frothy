@@ -21,7 +21,8 @@
 [Contributing](#contributing)
 
 <a name="about"/>
-##  About
+
+## About
 
 Frothy is a highly customizable, drop-in authentication form component built with [React](https://reactjs.org/), the [Firebase SDK](https://firebase.google.com/docs/database/web/start) and [Styled-Components](https://www.styled-components.com/). The library is approximately 104 KB minified and 25 KB gzipped.
 
@@ -40,6 +41,7 @@ Frothy is a highly customizable, drop-in authentication form component built wit
 > Please Read: This is a new project and has not been thoroughly tested. At the moment, it is not recommended to use this library in production apps. If you'd like to help get it there, your contributions would be greatly appreciated! Currently, this library is not compatible with React Native due to DOM dependencies. This may change in the future.
 
 <a name="getting-started"/>
+
 ## Getting Started
 
 In order to use this component, it must be installed with npm along with the `firebase` and `styled-components` npm packages.
@@ -101,6 +103,7 @@ import 'firebase/auth';
 ```
 
 <a name="props"/>
+
 ## Props
 
 Out of the box, a Frothy instance includes all of the supported Firebase features outlined above. However, a Frothy instance can be customized to include only the features that you want to support via props. The component will automatically reconfigure it's layout based on the features that you have chosen to implement. Several styling props and other custom configuration options are also exposed and documented below.
@@ -366,7 +369,9 @@ Default Value: `true`
 Description: Enables Github login and enables the social login button.
 
 <a name="default-props"/>
+
 ## Default Props
+
 Here is a Frothy instance with all of the available props set to their default values. In other words, the examples below is the same as just using `<Frothy />`.
 
 ```js
@@ -414,6 +419,7 @@ import { Button } from './common';
 ```
 
 <a name="access-user"/>
+
 ## Accessing User and Authentication State
 
 Firebase offers a couple convenient methods to access the user and authentication state:
@@ -449,6 +455,7 @@ if (user) {
 The Frothy [demo](https://frothy-123.firebaseapp.com/) utilizes the Authentication State Observer to control access to routes based on authentication status. Feel free to dig into the demo's source code to see how this works.
 
 <a name="design-decision"/>
+
 ## Design Decisions
 
 This library aims to strike a nice balance between plenty of configuration options and simplicity in getting started.
@@ -456,6 +463,7 @@ This library aims to strike a nice balance between plenty of configuration optio
 After initially writing all of the styles with in-line JavaScript, it was decided to refactor the project to use `styled-components`. The `styled-components` library is not included as a dependency due to the conflicts associated with having two installations in the same project. Instead, it is a required peer dependency that will need to be imported along with `firebase`. `styled-components` includes vendor prefixing, which allows this package to be supported by more browsers. It also injects the styles directly into the document, which means that you do not need to require any additional CSS files.
 
 <a name="whats-next"/>
+
 ## What's Next?
 
 * Tests
@@ -465,6 +473,7 @@ After initially writing all of the styles with in-line JavaScript, it was decide
 * React Native support?
 
 <a name="contributing"/>
+
 ## Contributing
 
 If you would like to contribute, that would be awesome! If you'd like to write some Jest tests, that would be the best!
