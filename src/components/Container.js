@@ -10,6 +10,7 @@ import withModal from './Modal';
 import Transition from 'react-transition-group/Transition';
 
 const StyledContainer = styled.div`
+  text-align: center;
   width: 340px;
   min-height: 525px;
   font-family: 'Roboto', sans-serif;
@@ -96,12 +97,13 @@ class Container extends Component {
     textSent: false,
     confirmationResult: null,
     userLocation: null,
+    ready: false,
   };
 
-  componentWillMount() {
+  componentDidMount() {
     if (!window.localStorage) return;
     const savedEmail = window.localStorage.getItem('frothyEmailAddress');
-    this.setState({ savedEmail });
+    this.setState({ savedEmail, ready: true });
   }
 
   cancelTextSent = () => {
@@ -146,7 +148,7 @@ class Container extends Component {
       return this.props.auth;
     } else {
       const firebase = require('firebase');
-      return auth;
+      return firebase.auth;
     }
   };
 
@@ -314,6 +316,12 @@ class Container extends Component {
       this.props.passwordReset ||
       this.props.phone;
 
+    // This is to prevent the forms from loading before the saved email
+    // is retreived from localStorage
+    if (!this.state.ready) {
+      return null;
+    }
+
     return (
       <StyledContainer
         shadow={this.props.shadow}
@@ -374,6 +382,8 @@ class Container extends Component {
                 textSent={this.state.textSent}
                 cancelTextSent={this.cancelTextSent}
                 autocomplete={this.props.autocomplete}
+                auth={this.auth()}
+                authMethod={this.authMethod()}
               />
             </TabPanel>
           ) : null}

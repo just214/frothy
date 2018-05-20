@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.1.5] - 2018-05-20
+
+### Changed
+
+* Added the anonymous login prop description to the README.
+* Fixed styling issue where some text was not properly center-aligning.
+* Fixed an issue where the Firebase auth method was not being correctly passed to the Password Login Form.
+
 ## [0.1.4] - 2018-05-16
 
 ### Changed

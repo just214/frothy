@@ -12,7 +12,7 @@ class PasswordResetForm extends Component {
   };
 
   componentDidMount() {
-    window.recaptchaVerifier = new this.props.auth.RecaptchaVerifier(
+    window.recaptchaVerifier = new this.props.authMethod.RecaptchaVerifier(
       this.recaptcha,
       {
         size: this.props.recaptcha === 'invisible' ? 'invisible' : 'normal',

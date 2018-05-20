@@ -347,6 +347,14 @@ Default Value: `"inline"`
 
 Description: Recaptcha requires that the user be notified if invisible Recaptcha is enabled. This prop allows you to display the badge that Recaptcha provides either inline in the form or in the bottom corners of the page.
 
+### anonymous
+
+`PropTypes.bool`
+
+Default Value: `true`
+
+Description: Enables and displays the anonymous login button.
+
 ### google
 
 `PropTypes.bool`
