@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.1.6] - 2018-05-31
+
+### Changed
+
+* Fixed an issue where the passwordRules default prop values were getting overwritten.
+* Minor style modifications.
+
 ## [0.1.5] - 2018-05-20
 
 ### Changed

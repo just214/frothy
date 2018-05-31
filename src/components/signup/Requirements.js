@@ -18,12 +18,11 @@ const Requirements = props => {
         style={{
           color: '#424242',
           margin: '3px',
-          textDecoration: 'underline',
           marginTop: '15px',
           fontSize: '14px',
         }}
       >
-        PASSWORD REQUIREMENTS
+        PASSWORD REQUIREMENTS:
       </p>
       <Container>
         <SingleRequirement
@@ -35,7 +34,7 @@ const Requirements = props => {
         />
 
         <SingleRequirement
-          show={props.passwordRules.uppercase !== 0}
+          show={props.passwordRules.uppercase}
           valid={props.passwordUppercaseIsValid}
           title={`At least ${props.passwordRules.uppercase} uppercase letters`}
         />

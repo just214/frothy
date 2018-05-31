@@ -98,12 +98,28 @@ class Container extends Component {
     confirmationResult: null,
     userLocation: null,
     ready: false,
+    passwordRules: {
+      show: true,
+      min: 6,
+      max: 50,
+      numbers: 0,
+      symbols: 0,
+      lowercase: 0,
+      uppercase: 0,
+    },
   };
 
   componentDidMount() {
     if (!window.localStorage) return;
     const savedEmail = window.localStorage.getItem('frothyEmailAddress');
     this.setState({ savedEmail, ready: true });
+
+    this.setState(prevState => ({
+      passwordRules: {
+        ...prevState.passwordRules,
+        ...this.props.passwordRules,
+      },
+    }));
   }
 
   cancelTextSent = () => {
@@ -398,7 +414,7 @@ class Container extends Component {
                 recaptcha={this.props.recaptcha}
                 agree={this.props.agree}
                 agreeMessage={this.props.agreeMessage}
-                passwordRules={this.props.passwordRules}
+                passwordRules={this.state.passwordRules}
               />
             </TabPanel>
           ) : null}

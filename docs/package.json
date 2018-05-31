@@ -1,11 +1,11 @@
 {
   "name": "frothy-demo",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "private": false,
   "license": "MIT",
   "dependencies": {
     "firebase": "^5.0.2",
-    "frothy": "^0.0.7",
+    "frothy": "^0.1.5",
     "material-ui": "^1.0.0-beta.47",
     "prop-types": "^15.6.1",
     "react": "^16.2.0",
